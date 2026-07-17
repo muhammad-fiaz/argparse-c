@@ -5,7 +5,7 @@ export default withLlms(
   defineConfig({
     title: 'argparse-c',
     description:
-      'Production-quality C/C++ argument parsing library inspired by Python\'s argparse',
+            'Production-quality C/C++ argument parsing library for modern applications',
     lang: 'en-US',
 
     srcDir: '.',
@@ -40,7 +40,7 @@ export default withLlms(
         {
           property: 'og:description',
           content:
-            'A production-quality C/C++ argument parsing library inspired by Python\'s argparse'
+            'A production-quality C/C++ argument parsing library for modern applications'
         }
       ],
       [
@@ -75,7 +75,7 @@ export default withLlms(
         {
           name: 'twitter:description',
           content:
-            'A production-quality C/C++ argument parsing library inspired by Python\'s argparse'
+            'A production-quality C/C++ argument parsing library for modern applications'
         }
       ],
 
@@ -126,7 +126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           '@type': 'SoftwareSourceCode',
           name: 'argparse-c',
           description:
-            'Production-quality C/C++ argument parsing library inspired by Python\'s argparse',
+      'Production-quality C/C++ argument parsing library for modern applications',
           url: 'https://muhammad-fiaz.github.io/argparse-c/',
           codeRepository: 'https://github.com/muhammad-fiaz/argparse-c',
           author: {

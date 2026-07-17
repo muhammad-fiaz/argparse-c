@@ -4,7 +4,7 @@
  *
  * This is the primary header for creating parsers, adding options and
  * positional arguments, and configuring parser behavior. It provides the
- * core API similar to Python's argparse.ArgumentParser.
+ * core API for building command-line parsers.
  */
 
 #ifndef ARGPARSE_ARGUMENT_H

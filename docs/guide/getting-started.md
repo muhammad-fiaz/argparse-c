@@ -5,7 +5,7 @@ description: Get up and running with argparse-c in minutes
 
 # Getting Started
 
-Welcome to **argparse-c**, a production-quality C/C++ argument parsing library inspired by Python's argparse.
+Welcome to **argparse-c**, a production-quality C/C++ argument parsing library for modern applications.
 
 ## What is argparse-c?
 

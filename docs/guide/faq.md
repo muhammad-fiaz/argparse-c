@@ -6,7 +6,7 @@ Frequently asked questions about argparse-c.
 
 ### What is argparse-c?
 
-argparse-c is a production-quality C/C++ argument parsing library inspired by Python's `argparse`. It provides a clean API for defining command-line options, positional arguments, subcommands, and more.
+argparse-c is a production-quality C/C++ argument parsing library. It provides a clean API for defining command-line options, positional arguments, subcommands, and more.
 
 ### What C standard does it require?
 

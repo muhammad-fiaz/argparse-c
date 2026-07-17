@@ -87,7 +87,13 @@ jobs:
 
       - name: Install dependencies (Windows)
         if: runner.os == 'Windows'
-        run: choco install cmake ninja
+        run: |
+          if (!(Get-Command cmake -ErrorAction SilentlyContinue)) {
+            choco install cmake --no-progress -y
+          }
+          if (!(Get-Command ninja -ErrorAction SilentlyContinue)) {
+            choco install ninja --no-progress -y
+          }
 
       - name: Configure (CMake)
         shell: bash

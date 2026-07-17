@@ -149,18 +149,6 @@ void argparse_free_internal(void *ptr, const argparse_allocator *alloc)
     a->free(ptr, a->user_data);
 }
 
-static void free_string_array(argparse_string_array *arr, const argparse_allocator *alloc)
-{
-    if (!arr) return;
-    for (size_t i = 0; i < arr->count; i++) {
-        argparse_free_internal(arr->items[i], alloc);
-    }
-    argparse_free_internal(arr->items, alloc);
-    arr->items = NULL;
-    arr->count = 0;
-    arr->capacity = 0;
-}
-
 static void free_value(argparse_value *val, const argparse_allocator *alloc)
 {
     if (!val) return;

@@ -2,12 +2,12 @@
 layout: home
 title: argparse-c
 titleTemplate: Production-Quality C/C++ Argument Parsing
-description: A production-quality C/C++ argument parsing library inspired by Python's argparse
+description: A production-quality C/C++ argument parsing library for modern applications
 
 hero:
   name: argparse-c
   text: C/C++ Argument Parsing
-  tagline: Production-quality command-line argument parsing inspired by Python's argparse. Simple API, powerful features, zero dependencies.
+  tagline: Production-quality command-line argument parsing for modern applications. Simple API, powerful features, zero dependencies.
   image:
     src: /logo.svg
     alt: argparse-c

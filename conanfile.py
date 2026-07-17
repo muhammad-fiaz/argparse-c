@@ -10,7 +10,7 @@ class ArgparseConan(ConanFile):
     author = "Muhammad Fiaz"
     url = "https://github.com/muhammad-fiaz/argparse-c"
     homepage = "https://muhammad-fiaz.github.io/argparse-c"
-    description = "Production-quality C/C++ argument parsing library inspired by Python's argparse"
+    description = "Production-quality C/C++ argument parsing library for modern applications"
     topics = ("argument-parsing", "cli", "c-library", "cpp")
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}

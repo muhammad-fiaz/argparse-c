@@ -1,7 +1,7 @@
 {
   "name": "argparse-c",
   "version": "0.1.0",
-  "description": "Production-quality C/C++ argument parsing library inspired by Python's argparse",
+  "description": "Production-quality C/C++ argument parsing library for modern applications",
   "homepage": "https://muhammad-fiaz.github.io/argparse-c",
   "license": "MIT",
   "supports": "!(uwp|arm)",

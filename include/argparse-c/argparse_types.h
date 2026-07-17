@@ -121,7 +121,7 @@ typedef enum argparse_type {
  * @brief Number of arguments an option or positional expects.
  *
  * Controls how many command-line tokens are consumed by the option.
- * Similar to Python's argparse nargs parameter.
+ * Defines the number of arguments expected.
  */
 typedef enum argparse_nargs {
     /** Zero arguments (flag option). */

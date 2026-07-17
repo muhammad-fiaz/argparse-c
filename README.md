@@ -16,7 +16,7 @@
 <a href="https://github.com/sponsors/muhammad-fiaz"><img src="https://img.shields.io/badge/Sponsor-GitHub-pink?style=social&logo=github" alt="GitHub Sponsors"></a>
 <a href="https://hits.sh/github.com/muhammad-fiaz/argparse-c/"><img src="https://hits.sh/github.com/muhammad-fiaz/argparse-c.svg?label=Visitors&extraCount=0&color=green" alt="Repo Visitors"></a>
 
-<p><em>A modern, production-quality C/C++ argument parsing library inspired by Python's argparse (C99 and later).</em></p>
+<p><em>A modern, production-quality C/C++ argument parsing library (C99 and later).</em></p>
 
 <b><a href="https://muhammad-fiaz.github.io/argparse-c/">Documentation</a> |
 <a href="https://muhammad-fiaz.github.io/argparse-c/api/overview">API Reference</a> |
@@ -25,7 +25,7 @@
 
 </div>
 
-`argparse-c` is a modern, production-quality C/C++ argument parsing library inspired by Python's argparse. Compatible with C99, C11, C17, C23, and C++20.
+`argparse-c` is a modern, production-quality C/C++ argument parsing library. Compatible with C99, C11, C17, C23, and C++20.
 
 > [!TIP]
 > If you build with argparse-c, make sure to give it a star.

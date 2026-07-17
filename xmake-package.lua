@@ -1,6 +1,6 @@
 package("argparse-c")
     set_homepage("https://muhammad-fiaz.github.io/argparse-c")
-    set_description("Production-quality C/C++ argument parsing library inspired by Python's argparse")
+    set_description("Production-quality C/C++ argument parsing library for modern applications")
     set_license("MIT")
 
     set_urls("https://github.com/muhammad-fiaz/argparse-c.git")
