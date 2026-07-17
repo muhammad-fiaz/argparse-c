@@ -182,9 +182,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         },
         {
           text: 'v0.1.0',
-          items: [
-            { text: 'Contributing', link: '/guide/contributing' }
-          ]
+          items: []
         }
       ],
 
@@ -259,8 +257,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {
           text: 'Resources',
           items: [
-            { text: 'FAQ', link: '/guide/faq' },
-            { text: 'Contributing', link: '/guide/contributing' }
+            { text: 'FAQ', link: '/guide/faq' }
           ]
         }
       ],
