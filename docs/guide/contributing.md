@@ -88,8 +88,6 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
 
 ## Code Style
 
-See [STYLE_GUIDE.md](STYLE_GUIDE.md) for detailed conventions.
-
 Key points:
 - C99 standard
 - 4 spaces indentation
