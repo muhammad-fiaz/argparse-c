@@ -25,6 +25,14 @@ export default withLlms(
       ],
       ['meta', { name: 'robots', content: 'index, follow' }],
 
+      // Favicon
+      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+      ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
+      ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
+      ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
+      ['link', { rel: 'manifest', href: '/manifest.json' }],
+      ['meta', { name: 'theme-color', content: '#2563eb' }],
+
       // Open Graph
       ['meta', { property: 'og:type', content: 'website' }],
       ['meta', { property: 'og:site_name', content: 'argparse-c' }],
@@ -61,8 +69,8 @@ export default withLlms(
 
       // Twitter Card
       ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-      ['meta', { name: 'twitter:site', content: '@muhammadfiaz' }],
-      ['meta', { name: 'twitter:creator', content: '@muhammadfiaz' }],
+      ['meta', { name: 'twitter:site', content: '@muhammadfiaz_' }],
+      ['meta', { name: 'twitter:creator', content: '@muhammadfiaz_' }],
       [
         'meta',
         {
@@ -132,7 +140,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           author: {
             '@type': 'Person',
             name: 'Muhammad Fiaz',
-            url: 'https://github.com/muhammad-fiaz'
+            url: 'https://muhammadfiaz.com',
+            sameAs: [
+              'https://github.com/muhammad-fiaz',
+              'https://linkedin.com/in/muhammad-fiaz-',
+              'https://x.com/muhammadfiaz_'
+            ]
           },
           programmingLanguage: ['C', 'C++'],
           license: 'https://opensource.org/licenses/MIT',
@@ -256,7 +269,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       ],
 
       socialLinks: [
-        { icon: 'github', link: 'https://github.com/muhammad-fiaz/argparse-c' }
+        { icon: 'github', link: 'https://github.com/muhammad-fiaz/argparse-c' },
+        { icon: 'linkedin', link: 'https://linkedin.com/in/muhammad-fiaz-' },
+        { icon: 'x', link: 'https://x.com/muhammadfiaz_' }
       ],
 
       editLink: {
@@ -267,7 +282,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       footer: {
         message: 'Released under the MIT License.',
-        copyright: 'Copyright © 2024-2026 Muhammad Fiaz'
+        copyright: 'Copyright © 2026 Muhammad Fiaz'
       },
 
       search: {

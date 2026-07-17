@@ -1,0 +1,16 @@
+{
+  "name": "argparse-c",
+  "short_name": "argparse-c",
+  "description": "Production-quality C/C++ argument parsing library for modern applications",
+  "start_url": "https://muhammad-fiaz.github.io/argparse-c/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/argparse-c/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
