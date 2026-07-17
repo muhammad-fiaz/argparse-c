@@ -1,8 +1,6 @@
 import { defineConfig } from 'vitepress'
-import { withLlms } from 'vitepress-plugin-llms'
 
-export default withLlms(
-  defineConfig({
+export default defineConfig({
     title: 'argparse-c',
     description:
             'Production-quality C/C++ argument parsing library for modern applications',
@@ -299,4 +297,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       hostname: 'https://muhammad-fiaz.github.io/argparse-c'
     }
   })
-)
