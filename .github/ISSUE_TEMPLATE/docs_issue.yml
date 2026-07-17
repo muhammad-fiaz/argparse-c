@@ -1,0 +1,47 @@
+name: Documentation Issue
+description: Report an issue with documentation
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Found an issue with the documentation? Let us know!
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Issue Type
+      options:
+        - Typo or grammatical error
+        - Incorrect information
+        - Missing documentation
+        - Outdated content
+        - Broken link
+        - Formatting issue
+    validations:
+      required: true
+
+  - type: input
+    id: page
+    attributes:
+      label: Page URL
+      description: "Which documentation page has the issue?"
+      placeholder: "https://muhammad-fiaz.github.io/argparse-c/guide/..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "Describe the documentation issue."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Fix
+      description: "If you know how to fix it, describe the correction."
+    validations:
+      required: false

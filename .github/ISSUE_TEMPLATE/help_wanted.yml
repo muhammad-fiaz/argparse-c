@@ -1,0 +1,45 @@
+name: Help Wanted
+description: Get help with using argparse-c
+labels: ["question", "help wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Need help using argparse-c? Describe your question and we'll do our best to help.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: "Describe what you're trying to accomplish."
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code Example
+      description: "If applicable, show the code you're working with."
+      render: c
+    validations:
+      required: false
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you tried?
+      description: "Describe any approaches you've already attempted."
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: "Your OS, compiler, and argparse-c version."
+      placeholder: |
+        OS: Ubuntu 22.04
+        Compiler: GCC 12.2
+        argparse-c: 1.0.0
+    validations:
+      required: false

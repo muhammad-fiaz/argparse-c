@@ -1,0 +1,51 @@
+# Build directories
+build/
+out/
+cmake-build-*/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled files
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.pdb
+
+# CMake generated
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Meson
+builddir/
+
+# Documentation
+docs/node_modules/
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test outputs
+Testing/
+
+# Package managers
+conan.lock
+conanfile.txt
+vcpkg_installed/

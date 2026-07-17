@@ -1,0 +1,64 @@
+---
+layout: home
+title: argparse-c
+titleTemplate: Production-Quality C/C++ Argument Parsing
+description: A production-quality C/C++ argument parsing library inspired by Python's argparse
+
+hero:
+  name: argparse-c
+  text: C/C++ Argument Parsing
+  tagline: Production-quality command-line argument parsing inspired by Python's argparse. Simple API, powerful features, zero dependencies.
+  image:
+    src: /logo.svg
+    alt: argparse-c
+  actions:
+    - theme: brand
+      text: Get Started
+      link: /guide/getting-started
+    - theme: alt
+      text: API Reference
+      link: /api/overview
+    - theme: alt
+      text: View on GitHub
+      link: https://github.com/muhammad-fiaz/argparse-c
+
+features:
+  - icon: ⚡
+    title: Zero Dependencies
+    details: Pure C99 implementation with no external dependencies. Drop it into any project and it just works.
+  - icon: 🛡️
+    title: Type Safety
+    details: Built-in type checking for strings, integers, floats, booleans, and custom types with automatic conversion and validation.
+  - icon: 📖
+    title: Auto-Generated Help
+    details: Beautiful, customizable help messages generated automatically from your argument definitions.
+  - icon: 🧩
+    title: Subcommands
+    details: Full subcommand support with automatic help generation and namespace isolation, like git's command structure.
+  - icon: 🔄
+    title: Shell Completion
+    details: Generate shell completion scripts for Bash, Zsh, and Fish with a single function call.
+  - icon: 🌍
+    title: Unicode Support
+    details: Full Unicode support for argument names, descriptions, and values across all platforms.
+  - icon: ⚙️
+    title: Config Files
+    details: Load arguments from JSON, INI, YAML, and TOML config files with automatic merging.
+  - icon: 🧠
+    title: Memory Safe
+    details: Custom allocator support and deterministic cleanup. No memory leaks, period.
+---
+
+<style>
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+</style>
