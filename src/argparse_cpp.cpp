@@ -17,13 +17,6 @@
 namespace {
 
 using ValidatorFn = std::function<bool(const std::string&, std::string&)>;
-using ValidatorMap = std::unordered_map<struct argparse_option*,
-                                       std::shared_ptr<ValidatorFn>>;
-
-ValidatorMap& validator_registry() {
-    static ValidatorMap map;
-    return map;
-}
 
 bool validator_bridge(const char* value, char* error_buf,
                       size_t error_buf_size) {

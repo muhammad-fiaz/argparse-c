@@ -59,11 +59,19 @@ static void manpage_write_synopsis(FILE *fp, const struct argparse *parser)
     for (size_t i = 0; i < parser->option_count; i++) {
         const struct argparse_option *opt = &parser->options[i];
         if (opt->short_name && opt->long_name) {
-            fprintf(fp, " [\\fB\\-%c\\fP | \\fB\\-%\\-%s\\fP]", opt->short_name, opt->long_name);
+            fputs(" [\\fB\\-", fp);
+            fputc(opt->short_name, fp);
+            fputs("\\fP | \\fB\\-\\-", fp);
+            fputs(opt->long_name, fp);
+            fputs("\\fP]", fp);
         } else if (opt->short_name) {
-            fprintf(fp, " [\\fB\\-%c\\fP]", opt->short_name);
+            fputs(" [\\fB\\-", fp);
+            fputc(opt->short_name, fp);
+            fputs("\\fP]", fp);
         } else if (opt->long_name) {
-            fprintf(fp, " [\\fB\\-%\\-%s\\fP]", opt->long_name);
+            fputs(" [\\fB\\-\\-", fp);
+            fputs(opt->long_name, fp);
+            fputs("\\fP]", fp);
         }
         if (opt->nargs == ARGPARSE_NARGS_1 || opt->nargs == ARGPARSE_NARGS_2 ||
             opt->nargs == ARGPARSE_NARGS_3) {
@@ -116,11 +124,19 @@ static void manpage_write_options(FILE *fp, const struct argparse *parser)
         fprintf(fp, ".TP\n");
 
         if (opt->short_name && opt->long_name) {
-            fprintf(fp, "\\fB\\-%c\\fP, \\fB\\-%\\-%s\\fP", opt->short_name, opt->long_name);
+            fputs("\\fB\\-", fp);
+            fputc(opt->short_name, fp);
+            fputs("\\fP, \\fB\\-\\-", fp);
+            fputs(opt->long_name, fp);
+            fputs("\\fP", fp);
         } else if (opt->short_name) {
-            fprintf(fp, "\\fB\\-%c\\fP", opt->short_name);
+            fputs("\\fB\\-", fp);
+            fputc(opt->short_name, fp);
+            fputs("\\fP", fp);
         } else if (opt->long_name) {
-            fprintf(fp, "\\fB\\-%\\-%s\\fP", opt->long_name);
+            fputs("\\fB\\-\\-", fp);
+            fputs(opt->long_name, fp);
+            fputs("\\fP", fp);
         }
 
         if (opt->nargs == ARGPARSE_NARGS_1 || opt->nargs == ARGPARSE_NARGS_2 ||
