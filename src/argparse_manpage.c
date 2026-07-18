@@ -213,7 +213,7 @@ static void manpage_write_examples(FILE *fp, const struct argparse *parser)
 static void manpage_write_footer(FILE *fp)
 {
     fprintf(fp, ".SH SEE ALSO\n");
-    fprintf(fp, "Full documentation at: https://github.com/argparse-c/argparse-c\n");
+    fprintf(fp, "Full documentation at: https://github.com/muhammad-fiaz/argparse-c\n");
     fprintf(fp, ".SH AUTHORS\n");
     fprintf(fp, "argparse-c contributors.\n");
 }

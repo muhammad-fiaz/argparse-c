@@ -31,7 +31,6 @@ compile_commands.json
 
 # Meson
 builddir/
-meson_options.txt
 
 # Documentation
 docs/node_modules/

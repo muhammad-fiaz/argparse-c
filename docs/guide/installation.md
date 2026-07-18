@@ -110,7 +110,7 @@ Compile and run:
 ```bash
 gcc -o test test.c src/argparse.c -Iinclude
 ./test
-# Output: argparse-c version: 1.0.0
+# Output: argparse-c version: 0.1.0
 ```
 
 ## Platform Notes

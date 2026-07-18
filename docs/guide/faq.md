@@ -107,7 +107,7 @@ include(FetchContent)
 FetchContent_Declare(
   argparse-c
   GIT_REPOSITORY https://github.com/muhammad-fiaz/argparse-c.git
-  GIT_TAG v1.0.0
+  GIT_TAG v0.1.0
 )
 FetchContent_MakeAvailable(argparse-c)
 target_link_libraries(your_target PRIVATE argparse-c::argparse-c)

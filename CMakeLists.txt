@@ -5,7 +5,7 @@ project(
   VERSION 0.1.0
   LANGUAGES C CXX
   DESCRIPTION "A full-featured argument parsing library for C"
-  HOMEPAGE_URL "https://github.com/argparse-c/argparse-c"
+  HOMEPAGE_URL "https://github.com/muhammad-fiaz/argparse-c"
 )
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
