@@ -1,10 +1,34 @@
 import { defineConfig } from 'vitepress'
 
+const siteName = 'argparse-c'
+const siteDescription = 'Production-quality C/C++ argument parsing library for modern applications'
+const siteUrl = 'https://muhammad-fiaz.github.io'
+const siteBase = '/argparse-c/'
+const defaultOgImage = `${siteUrl}${siteBase}logo.svg`
+
+function toDocPath(relativePath: string): string {
+  const normalized = relativePath.replace(/\\/g, '/').replace(/\.md$/, '')
+  if (normalized === '' || normalized === 'index') return ''
+  if (normalized.endsWith('/index')) return normalized.slice(0, -6)
+  return normalized
+}
+
+function toCanonicalUrl(relativePath: string): string {
+  const docPath = toDocPath(relativePath)
+  return docPath ? `${siteUrl}${siteBase}${docPath}` : `${siteUrl}${siteBase}`
+}
+
+function toAbsoluteUrl(pathOrUrl: string): string {
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl
+  const cleaned = pathOrUrl.startsWith('/') ? pathOrUrl.slice(1) : pathOrUrl
+  return `${siteUrl}${siteBase}${cleaned}`
+}
+
 export default defineConfig({
-    title: 'argparse-c',
-    description:
-            'Production-quality C/C++ argument parsing library for modern applications',
+    title: siteName,
+    description: siteDescription,
     lang: 'en-US',
+    base: siteBase,
 
     srcDir: '.',
 
@@ -25,65 +49,17 @@ export default defineConfig({
 
       // Favicon
       ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
-      ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
-      ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
-      ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
       ['link', { rel: 'manifest', href: '/manifest.json' }],
       ['meta', { name: 'theme-color', content: '#2563eb' }],
 
       // Open Graph
       ['meta', { property: 'og:type', content: 'website' }],
-      ['meta', { property: 'og:site_name', content: 'argparse-c' }],
-      [
-        'meta',
-        {
-          property: 'og:title',
-          content: 'argparse-c - Production-Quality C/C++ Argument Parsing'
-        }
-      ],
-      [
-        'meta',
-        {
-          property: 'og:description',
-          content:
-            'A production-quality C/C++ argument parsing library for modern applications'
-        }
-      ],
-      [
-        'meta',
-        {
-          property: 'og:url',
-          content: 'https://muhammad-fiaz.github.io/argparse-c/'
-        }
-      ],
-      [
-        'meta',
-        {
-          property: 'og:image',
-          content:
-            'https://muhammad-fiaz.github.io/argparse-c/og-image.png'
-        }
-      ],
+      ['meta', { property: 'og:site_name', content: siteName }],
 
       // Twitter Card
       ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
       ['meta', { name: 'twitter:site', content: '@muhammadfiaz_' }],
       ['meta', { name: 'twitter:creator', content: '@muhammadfiaz_' }],
-      [
-        'meta',
-        {
-          name: 'twitter:title',
-          content: 'argparse-c - Production-Quality C/C++ Argument Parsing'
-        }
-      ],
-      [
-        'meta',
-        {
-          name: 'twitter:description',
-          content:
-            'A production-quality C/C++ argument parsing library for modern applications'
-        }
-      ],
 
       // Google Analytics
       [
@@ -130,10 +106,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'SoftwareSourceCode',
-          name: 'argparse-c',
-          description:
-      'Production-quality C/C++ argument parsing library for modern applications',
-          url: 'https://muhammad-fiaz.github.io/argparse-c/',
+          name: siteName,
+          description: siteDescription,
+          url: `${siteUrl}${siteBase}`,
           codeRepository: 'https://github.com/muhammad-fiaz/argparse-c',
           author: {
             '@type': 'Person',
@@ -157,6 +132,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         })
       ]
     ],
+    transformHead: ({ pageData }) => {
+      const frontmatterTitle = typeof pageData.frontmatter.title === 'string'
+        ? pageData.frontmatter.title
+        : ''
+      const title = frontmatterTitle || pageData.title || siteName
+      const description = typeof pageData.description === 'string' && pageData.description
+        ? pageData.description
+        : siteDescription
+      const canonical = toCanonicalUrl(pageData.relativePath)
+      const frontmatterOgImage = typeof pageData.frontmatter.ogImage === 'string'
+        ? pageData.frontmatter.ogImage
+        : ''
+      const ogImage = frontmatterOgImage ? toAbsoluteUrl(frontmatterOgImage) : defaultOgImage
+      const ogTitle = title === siteName ? siteName : `${title} | ${siteName}`
+
+      return [
+        ['link', { rel: 'canonical', href: canonical }],
+        ['meta', { property: 'og:title', content: ogTitle }],
+        ['meta', { property: 'og:description', content: description }],
+        ['meta', { property: 'og:url', content: canonical }],
+        ['meta', { property: 'og:image', content: ogImage }],
+        ['meta', { name: 'twitter:title', content: ogTitle }],
+        ['meta', { name: 'twitter:description', content: description }],
+        ['meta', { name: 'twitter:image', content: ogImage }]
+      ]
+    },
 
     themeConfig: {
       logo: '/logo.svg',

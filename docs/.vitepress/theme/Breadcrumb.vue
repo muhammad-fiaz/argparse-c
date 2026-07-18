@@ -5,7 +5,7 @@
         <span v-if="index === items.length - 1" class="current" aria-current="page">
           {{ item.text }}
         </span>
-        <a v-else :href="item.link">{{ item.text }}</a>
+        <a v-else :href="withBase(item.link)">{{ item.text }}</a>
         <span v-if="index < items.length - 1" class="separator" aria-hidden="true">/</span>
       </li>
     </ol>
@@ -14,7 +14,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 
 const { page } = useData()
 
@@ -37,11 +37,11 @@ const items = computed(() => {
     if (segment === 'guide' || segment === 'api' || segment === 'examples') {
       crumbs.push({ text: sectionMap[segment], link: currentPath + '/' })
     } else if (!isLast) {
-      crumbs.push({ text: segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' '), link: currentPath + '.html' })
+      crumbs.push({ text: segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' '), link: currentPath })
     } else {
       const title = page.value.frontmatter?.title ||
         segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ')
-      crumbs.push({ text: title, link: currentPath + '.html' })
+      crumbs.push({ text: title, link: currentPath })
     }
   })
 
