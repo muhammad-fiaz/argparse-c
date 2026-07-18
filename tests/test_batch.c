@@ -8,7 +8,7 @@ static void test_batch_register(void) {
 
     argparse_option_def defs[] = {
         { 'v', "verbose", NULL, "Verbose output", NULL, NULL,
-          ARGPARSE_NARGS_0, ARGPARSE_TYPE_NONE, ARGPARSE_STORE, false },
+          ARGPARSE_NARGS_0, ARGPARSE_TYPE_NONE, ARGPARSE_STORE_TRUE, false },
         { 'o', "output", NULL, "Output file", "FILE", NULL,
           ARGPARSE_NARGS_1, ARGPARSE_TYPE_STRING, ARGPARSE_STORE, false },
         { 'n', "count", NULL, "Count", "NUM", "1",
@@ -21,6 +21,7 @@ static void test_batch_register(void) {
     const char *argv[] = {"test", "-v", "-o", "file.txt", "-n", "5"};
     struct argparse_result *result = argparse_parse(parser, 6, argv);
     ASSERT_NOT_NULL(result);
+    ASSERT_EQ(argparse_result_error_code(result), ARGPARSE_OK);
     ASSERT_TRUE(argparse_get_bool(result, "verbose"));
     ASSERT_STR_EQ(argparse_get_string(result, "output"), "file.txt");
     ASSERT_EQ(argparse_get_int(result, "count"), 5);

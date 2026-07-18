@@ -37,6 +37,38 @@ if (port < 1 || port > 65535) {
 }
 ```
 
+### Built-in Range Validators
+
+argparse-c provides built-in range validators that automatically validate values during parsing:
+
+```c
+#include <argparse-c/argparse.h>
+
+// Integer range (1-65535)
+struct argparse_option *port = argparse_add_option(parser, 'p', "port",
+    ARGPARSE_NARGS_1, ARGPARSE_TYPE_INT, "Port number", "PORT");
+argparse_option_set_range_int(port, 1, 65535);
+
+// Float range (0.0-1.0)
+struct argparse_option *ratio = argparse_add_option(parser, 'r', "ratio",
+    ARGPARSE_NARGS_1, ARGPARSE_TYPE_FLOAT, "Ratio", "RATIO");
+argparse_option_set_range_float(ratio, 0.0f, 1.0f);
+
+// Glob pattern matching
+struct argparse_option *file = argparse_add_option(parser, 'f', "file",
+    ARGPARSE_NARGS_1, ARGPARSE_TYPE_STRING, "File name", "FILE");
+argparse_option_set_pattern(file, "*.txt");
+```
+
+### Non-empty Validation
+
+```c
+char err[256];
+if (!argparse_validate_nonempty(value, err, sizeof(err))) {
+    fprintf(stderr, "Error: %s\n", err);
+}
+```
+
 ## Custom Validators
 
 ### String Validation

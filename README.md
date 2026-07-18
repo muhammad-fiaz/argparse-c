@@ -56,6 +56,14 @@
 | **C++ Wrapper** | Modern C++20 wrapper with RAII, std::optional, method chaining. | https://muhammad-fiaz.github.io/argparse-c/examples/cpp |
 | **Unicode** | UTF-8 string support with proper character width detection. | https://muhammad-fiaz.github.io/argparse-c/guide/unicode |
 | **Response Files** | Load arguments from @file expansion. | https://muhammad-fiaz.github.io/argparse-c/guide/config-files |
+| **Colored Output** | ANSI/Win32 colored terminal output with theme support. | https://muhammad-fiaz.github.io/argparse-c/guide/color |
+| **Thread Safety** | Freeze parsers for concurrent thread-safe parsing. | https://muhammad-fiaz.github.io/argparse-c/guide/thread |
+| **Lazy Defaults** | Compute default values on-demand for performance. | https://muhammad-fiaz.github.io/argparse-c/guide/lazy |
+| **Batch Registration** | Register multiple options from structs for performance. | https://muhammad-fiaz.github.io/argparse-c/guide/batch |
+| **JSON Export** | Export parsed results to JSON format. | https://muhammad-fiaz.github.io/argparse-c/guide/json |
+| **Man Page Gen** | Generate man page documentation from parser. | https://muhammad-fiaz.github.io/argparse-c/guide/manpage |
+| **I18n** | Internationalization support for help text. | https://muhammad-fiaz.github.io/argparse-c/guide/i18n |
+| **Plugin System** | Extensible custom type plugins. | https://muhammad-fiaz.github.io/argparse-c/guide/plugin |
 | **Cross-Platform** | Runs on Linux, Windows (MSVC), and macOS. | https://muhammad-fiaz.github.io/argparse-c/guide/installation |
 | **Zero Dependencies** | Uses only the C standard library. | https://muhammad-fiaz.github.io/argparse-c/guide/installation |
 

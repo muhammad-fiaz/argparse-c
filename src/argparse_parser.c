@@ -56,11 +56,36 @@ struct argparse_result *argparse_parse(struct argparse *parser, int argc,
             int new_argc = 0;
             const char **new_argv = NULL;
             if (argparse_load_response_file(parser, arg + 1, &new_argc, &new_argv) == 0) {
-                for (int j = 1; j < new_argc; j++) {
-                    argv[i] = new_argv[j];
-                    if (parse_positional(parser, result, argc, argv, &i, &positional_index) != 0) {
-                        argparse_free_response_file(new_argc, new_argv);
-                        return result;
+                int j = 0;
+                while (j < new_argc) {
+                    const char *rarg = new_argv[j];
+
+                    if (argparse_streq(rarg, "--")) {
+                        j++;
+                        while (j < new_argc) {
+                            if (parse_positional(parser, result, new_argc, new_argv, &j, &positional_index) != 0) {
+                                argparse_free_response_file(new_argc, new_argv);
+                                return result;
+                            }
+                        }
+                        break;
+                    }
+
+                    if (rarg[0] == '-' && rarg[1] == '-') {
+                        if (parse_long_option(parser, result, new_argc, new_argv, &j) != 0) {
+                            argparse_free_response_file(new_argc, new_argv);
+                            return result;
+                        }
+                    } else if (rarg[0] == '-' && strlen(rarg) > 1) {
+                        if (parse_short_option(parser, result, new_argc, new_argv, &j) != 0) {
+                            argparse_free_response_file(new_argc, new_argv);
+                            return result;
+                        }
+                    } else {
+                        if (parse_positional(parser, result, new_argc, new_argv, &j, &positional_index) != 0) {
+                            argparse_free_response_file(new_argc, new_argv);
+                            return result;
+                        }
                     }
                 }
                 argparse_free_response_file(new_argc, new_argv);

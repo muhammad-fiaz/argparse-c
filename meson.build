@@ -91,5 +91,5 @@ pkg = import('pkgconfig')
 pkg.generate(
   argparse_lib,
   description: 'A full-featured argument parsing library for C',
-  url: 'https://github.com/argparse-c/argparse-c',
+  url: 'https://github.com/muhammad-fiaz/argparse-c',
 )

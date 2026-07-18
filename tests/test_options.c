@@ -1,5 +1,27 @@
 #include "test_framework.h"
 #include <argparse-c/argparse.h>
+#include <string.h>
+
+static int callback_invoked = 0;
+
+static void my_callback(struct argparse *parser, void *data) {
+    (void)parser; (void)data;
+    callback_invoked = 1;
+}
+
+static void test_option_set_callback(void) {
+    struct argparse *p = argparse_new("prog", NULL);
+    struct argparse_option *opt = argparse_add_option(p, 'v', "verbose",
+        ARGPARSE_NARGS_0, ARGPARSE_TYPE_NONE, "Verbose", "verbose");
+    argparse_option_set_callback(opt, my_callback, NULL);
+    const char *argv[] = {"prog", "-v"};
+    callback_invoked = 0;
+    struct argparse_result *r = argparse_parse(p, 2, argv);
+    ASSERT_EQ(argparse_result_error_code(r), ARGPARSE_OK);
+    ASSERT_EQ(callback_invoked, 1);
+    argparse_result_free(r);
+    argparse_free(p);
+}
 
 static void test_short_option(void) {
     struct argparse *p = argparse_new("prog", NULL);
@@ -186,6 +208,7 @@ int main(int argc, char **argv) {
     RUN_TEST(test_option_override_default);
     RUN_TEST(test_short_only_option);
     RUN_TEST(test_long_only_option);
+    RUN_TEST(test_option_set_callback);
 
     printf("\nResults: %d/%d passed", _tests_passed, _tests_run);
     if (_tests_failed > 0) printf(", %d FAILED", _tests_failed);

@@ -1,5 +1,6 @@
 #include "test_framework.h"
 #include <argparse-c/argparse.h>
+#include <string.h>
 
 static void test_version_string(void) {
     const char *ver = argparse_version_string();
@@ -185,6 +186,53 @@ static void test_result_error_on_success(void) {
     argparse_free(p);
 }
 
+static void test_utf8_strlen_ascii(void) {
+    ASSERT_EQ(argparse_utf8_strlen("hello"), (size_t)5);
+    ASSERT_EQ(argparse_utf8_strlen(""), (size_t)0);
+    ASSERT_EQ(argparse_utf8_strlen("a"), (size_t)1);
+}
+
+static void test_utf8_strlen_multibyte(void) {
+    ASSERT_EQ(argparse_utf8_strlen("\xC3\xA9"), (size_t)1);
+    ASSERT_EQ(argparse_utf8_strlen("\xE4\xB8\xAD"), (size_t)1);
+}
+
+static void test_complete_bash(void) {
+    struct argparse *p = argparse_new("prog", "Test");
+    argparse_add_option(p, 'v', "verbose", ARGPARSE_NARGS_0,
+                        ARGPARSE_TYPE_NONE, "Verbose", NULL);
+    const char *argv[] = {"prog"};
+    argparse_complete_bash(p, 1, argv);
+    argparse_free(p);
+}
+
+static void test_complete_zsh(void) {
+    struct argparse *p = argparse_new("prog", "Test");
+    argparse_add_option(p, 'v', "verbose", ARGPARSE_NARGS_0,
+                        ARGPARSE_TYPE_NONE, "Verbose", NULL);
+    const char *argv[] = {"prog"};
+    argparse_complete_zsh(p, 1, argv);
+    argparse_free(p);
+}
+
+static void test_complete_fish(void) {
+    struct argparse *p = argparse_new("prog", "Test");
+    argparse_add_option(p, 'v', "verbose", ARGPARSE_NARGS_0,
+                        ARGPARSE_TYPE_NONE, "Verbose", NULL);
+    const char *argv[] = {"prog"};
+    argparse_complete_fish(p, 1, argv);
+    argparse_free(p);
+}
+
+static void test_complete_powershell(void) {
+    struct argparse *p = argparse_new("prog", "Test");
+    argparse_add_option(p, 'v', "verbose", ARGPARSE_NARGS_0,
+                        ARGPARSE_TYPE_NONE, "Verbose", NULL);
+    const char *argv[] = {"prog"};
+    argparse_complete_powershell(p, 1, argv);
+    argparse_free(p);
+}
+
 int main(int argc, char **argv) {
     (void)argc; (void)argv;
     printf("\n=== test_basic ===\n");
@@ -214,6 +262,12 @@ int main(int argc, char **argv) {
     RUN_TEST(test_get_count_default_returns_zero);
     RUN_TEST(test_error_string);
     RUN_TEST(test_result_error_on_success);
+    RUN_TEST(test_utf8_strlen_ascii);
+    RUN_TEST(test_utf8_strlen_multibyte);
+    RUN_TEST(test_complete_bash);
+    RUN_TEST(test_complete_zsh);
+    RUN_TEST(test_complete_fish);
+    RUN_TEST(test_complete_powershell);
 
     printf("\nResults: %d/%d passed", _tests_passed, _tests_run);
     if (_tests_failed > 0) printf(", %d FAILED", _tests_failed);
