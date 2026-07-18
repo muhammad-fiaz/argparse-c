@@ -1,3 +1,8 @@
+---
+title: "Subcommands"
+description: "Multi-command CLI applications like git or docker. void init_callback(struct argparse *parser, void *data) { void build_callback(struct argparse *parser, void *data) { void deploy_callback(struct argparse *parser, void *data) { int main(int argc, const char **argv) { Initializing project in ./src... Building project... Deploying..."
+---
+
 # Subcommands
 
 Multi-command CLI applications like git or docker.

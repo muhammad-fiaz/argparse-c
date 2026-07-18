@@ -1,3 +1,8 @@
+---
+title: "Flags & Switches"
+description: "Examples for boolean flags, switches, and counter options."
+---
+
 # Flags & Switches
 
 Boolean flags and counter options.

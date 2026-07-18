@@ -1,3 +1,8 @@
+---
+title: "Batch Registration"
+description: "Register multiple options at once from an array of definitions"
+---
+
 # Batch Registration
 
 Batch registration lets you register multiple options at once from an array of definitions, reducing repetitive `argparse_add_option()` calls.

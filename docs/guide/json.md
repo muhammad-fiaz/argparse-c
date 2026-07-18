@@ -1,3 +1,8 @@
+---
+title: "JSON Export"
+description: "Export parser schemas and parsed values as JSON."
+---
+
 # JSON Export
 
 argparse-c can export parser schemas and parsed values as JSON without any external JSON library dependency.

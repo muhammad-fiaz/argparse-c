@@ -1,3 +1,8 @@
+---
+title: "Custom Allocators"
+description: "Using custom memory allocators for allocation control"
+---
+
 # Custom Allocators
 
 argparse-c supports pluggable memory allocators, allowing you to replace the default `malloc`/`free` with custom implementations.

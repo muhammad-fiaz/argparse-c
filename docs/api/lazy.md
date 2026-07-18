@@ -1,3 +1,8 @@
+---
+title: "Lazy Defaults API Reference"
+description: "Lazy default value evaluation for options. void argparse_option_set_lazy_default(struct argparse_option *option, Set a lazy default value function on an option. The function is called during apply_defaults (after parsing) for any option that was not explicitly set on the command line. typedef const char *(*argparse_lazy_default_fn)(void *user_data); Function that returns a default value string. Called only when the option was not provided on the command line."
+---
+
 # Lazy Defaults API Reference
 
 Lazy default value evaluation for options.

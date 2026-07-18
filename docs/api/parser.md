@@ -1,3 +1,8 @@
+---
+title: "Parser API"
+description: "Parser lifecycle and configuration functions."
+---
+
 # Parser API
 
 Parser lifecycle and configuration functions.

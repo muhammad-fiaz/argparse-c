@@ -1,3 +1,8 @@
+---
+title: "Color API Reference"
+description: "Colored terminal output support for help and error messages. void argparse_color_enable(bool enable); Enable or disable colored output globally. bool argparse_color_enabled(void); Check if colored output is currently enabled. const char *argparse_color_code(argparse_color color); Get the ANSI escape sequence for a color. Returns an empty string if color is disabled or for `ARGPARSE_COLOR_DEFAULT`. void argparse_print_colored(FILE *fp, const char *text, argparse_color color); Print colored text to a FILE stream. Automatically suppresses escape sequences when output is not a TTY."
+---
+
 # Color API Reference
 
 Colored terminal output support for help and error messages.

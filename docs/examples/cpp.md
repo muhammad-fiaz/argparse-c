@@ -1,3 +1,8 @@
+---
+title: "C++ Integration"
+description: "Using argparse-c with modern C++ (C++20)."
+---
+
 # C++ Integration
 
 Using argparse-c with modern C++ (C++20).

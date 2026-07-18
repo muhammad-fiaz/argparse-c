@@ -1,3 +1,8 @@
+---
+title: "FAQ"
+description: "Frequently asked questions about argparse-c"
+---
+
 # FAQ
 
 Frequently asked questions about argparse-c.

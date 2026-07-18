@@ -1,3 +1,8 @@
+---
+title: "Thread Safety"
+description: "Thread-safe parsing with the freeze and parse_threadsafe APIs."
+---
+
 # Thread Safety
 
 argparse-c supports thread-safe parsing through its freeze/unfreeze mechanism. A frozen parser can be safely shared across multiple threads for concurrent read-only parsing.

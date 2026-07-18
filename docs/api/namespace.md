@@ -1,3 +1,8 @@
+---
+title: "Namespace / Result API"
+description: "Parse arguments and access typed values from parse results."
+---
+
 # Namespace / Result API
 
 Parsing arguments and accessing parsed values.

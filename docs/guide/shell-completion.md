@@ -1,3 +1,8 @@
+---
+title: "Shell Completion"
+description: "Generate shell completion scripts for Bash, Zsh, Fish, and PowerShell."
+---
+
 # Shell Completion
 
 argparse-c can generate shell completion scripts for Bash, Zsh, Fish, and PowerShell, enabling tab-completion for your CLI application.

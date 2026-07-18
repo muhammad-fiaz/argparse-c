@@ -1,3 +1,8 @@
+---
+title: "Version API"
+description: "Version information for the argparse-c library. const char *argparse_version_string(void); Get the library version as a string. void argparse_version(int *major, int *minor, int *patch); Get the library version as individual components. int main(void) { argparse-c follows [Semantic Versioning](https://semver.org/): Check compatibility at compile time:"
+---
+
 # Version API
 
 Version information for the argparse-c library.

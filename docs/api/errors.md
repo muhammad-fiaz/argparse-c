@@ -1,3 +1,8 @@
+---
+title: "Errors API"
+description: "Error handling and error string utilities. typedef enum argparse_error_code { const char *argparse_error_string(argparse_error_code code); Convert an error code to a human-readable string. const char *argparse_result_error(const struct argparse_result *result); Get the detailed error message from a parse result. argparse_error_code argparse_result_error_code(const struct argparse_result *result); Get the error code from a parse result. struct argparse_result *result = argparse_parse(parser, argc, argv); argparse_error_code code = argparse_result_error_code(result); if (code != ARGPARSE_OK) { argparse_result_free(result); struct argparse_result *result = argparse_parse(parser, argc, argv); switch (argparse_result_error_code(result)) { case ARGPARSE_OK: case ARGPARSE_ERROR_MISSING_ARGUMENT: case ARGPARSE_ERROR_INVALID_VALUE: case ARGPARSE_ERROR_CONFLICT: default: argparse_result_free(result);"
+---
+
 # Errors API
 
 Error handling and error string utilities.

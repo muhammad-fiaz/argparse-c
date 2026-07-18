@@ -1,3 +1,8 @@
+---
+title: "Colored Output"
+description: "Colored terminal output support for help and error messages"
+---
+
 # Colored Output
 
 argparse-c supports colored terminal output for help messages and error diagnostics.

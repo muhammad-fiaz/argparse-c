@@ -1,3 +1,8 @@
+---
+title: "Basic Usage"
+description: "Simple option and positional argument parsing. int main(int argc, const char **argv) { Hello, Alice! Hi, Bob! Hi, Bob! Hi, Bob!"
+---
+
 # Basic Usage
 
 Simple option and positional argument parsing.

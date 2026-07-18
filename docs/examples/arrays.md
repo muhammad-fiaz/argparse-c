@@ -1,3 +1,8 @@
+---
+title: "Arrays & Lists"
+description: "Examples for multi-value arguments using STAR and PLUS nargs."
+---
+
 # Arrays & Lists
 
 Multi-value arguments with nargs=STAR and nargs=PLUS.

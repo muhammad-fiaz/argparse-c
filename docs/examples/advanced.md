@@ -1,3 +1,8 @@
+---
+title: "Advanced Features"
+description: "Demonstrates callbacks, store_const, required options, and combining multiple advanced features. static int dry_run = 0; static int log_enabled = 0; static void on_log(struct argparse *parser, void *data) { static void on_dry_run(struct argparse *parser, void *data) { int main(void) {"
+---
+
 # Advanced Features
 
 Demonstrates callbacks, store_const, required options, and combining multiple advanced features.

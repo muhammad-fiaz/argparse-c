@@ -1,3 +1,8 @@
+---
+title: "Mutex API Reference"
+description: "Mutually exclusive option groups prevent multiple conflicting options from being specified together. struct argparse_mutex *argparse_add_mutex(struct argparse *parser, Create a new mutually exclusive option group. At most one option in the group may be specified on the command line. void argparse_mutex_add_option(struct argparse_mutex *mutex, Add an option to a mutually exclusive group. int main(void) {"
+---
+
 # Mutex API Reference
 
 Mutually exclusive option groups prevent multiple conflicting options from being specified together.

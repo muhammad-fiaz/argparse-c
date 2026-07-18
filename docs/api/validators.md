@@ -1,3 +1,8 @@
+---
+title: "Validators API"
+description: "Custom value validation for options. typedef bool (*argparse_validate_fn)(const char *value, Custom validation function type. Called after type conversion. void argparse_option_set_validator(struct argparse_option *option, Set a custom validator on an option. bool validate_port(const char *value, char *error_buf, size_t error_buf_size) { bool validate_email(const char *value, char *error_buf, size_t error_buf_size) { int main(int argc, const char **argv) {"
+---
+
 # Validators API
 
 Custom value validation for options.

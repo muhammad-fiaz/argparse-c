@@ -1,3 +1,8 @@
+---
+title: "Lazy Defaults"
+description: "Lazy defaults allow you to compute default values on demand at parse time, rather than specifying static defaults upfront. This is useful when the default depends on runtime state like environment variables, the current directory, or other options. When an option is not provided on the command line, the lazy default function is called to compute the value. The function receives user data (set at registration time) and returns a string that is used as the option's value. static const char *env_default(void *user_data) { int main(int argc, const char **argv) { void argparse_option_set_lazy_default(struct argparse_option *option, The lazy default function signature is: typedef const char *(*argparse_lazy_default_fn)(void *user_data);"
+---
+
 # Lazy Defaults
 
 Lazy defaults allow you to compute default values on demand at parse time, rather than specifying static defaults upfront. This is useful when the default depends on runtime state like environment variables, the current directory, or other options.

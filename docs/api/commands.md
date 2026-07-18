@@ -1,3 +1,8 @@
+---
+title: "Commands API"
+description: "Subcommand support for multi-command CLI applications. struct argparse_command *argparse_add_command(struct argparse *parser, Add a subcommand with its own parser. struct argparse *argparse_command_get_parser(struct argparse_command *command); Get the subcommand's parser for adding its own options. void init_callback(struct argparse *parser, void *data) { void build_callback(struct argparse *parser, void *data) { int main(int argc, const char **argv) { Usage: mytool init --force mytool build --target release"
+---
+
 # Commands API
 
 Subcommand support for multi-command CLI applications.

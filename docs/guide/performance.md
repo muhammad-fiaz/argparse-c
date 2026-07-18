@@ -1,3 +1,8 @@
+---
+title: "Performance"
+description: "Performance characteristics and optimization tips for argparse-c. Run the built-in benchmarks: cmake -B build -DARGPARSE_BUILD_BENCHMARKS=ON -DCMAKE_BUILD_TYPE=Release cmake --build build --parallel Create the parser once and reuse it: struct argparse *parser = create_parser(); for (int i = 0; i < batch_size; i++) { argparse_free(parser); for (int i = 0; i < batch_size; i++) { For batch processing, use an arena allocator: static char arena[1024 * 1024]; static size_t arena_offset = 0; void *arena_alloc(size_t size, void *user_data) { void arena_free(void *ptr, void *user_data) { Fewer options = faster parsing. Consider grouping related options or using subcommands. Short options (`-v`) are slightly faster to match than long options (`--verbose`). argparse-c adds ~2-5 μs overhead compared to hand-written `getopt`-style parsing for simple cases. This overhead is negligible for most applications and provides significant benefits: For extremely performance-critical paths (parsing millions of argument sets), consider manual parsing and validate with argparse-c for user-facing interfaces."
+---
+
 # Performance
 
 Performance characteristics and optimization tips for argparse-c.

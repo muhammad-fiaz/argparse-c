@@ -1,3 +1,8 @@
+---
+title: "Config API"
+description: "Configuration file and environment variable support. void argparse_set_env_prefix(struct argparse *parser, const char *prefix); Set the environment variable prefix. When set, the parser checks for environment variables named `PREFIX_OPTIONNAME` for options not on the command line. void argparse_option_set_env(struct argparse_option *option, Set a specific environment variable for an option (overrides prefix-based naming). argparse_error_code argparse_load_config(struct argparse *parser, Load option values from a configuration file. int main(int argc, const char **argv) { The environment variable name is derived by:"
+---
+
 # Config API
 
 Configuration file and environment variable support.

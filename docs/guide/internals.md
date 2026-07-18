@@ -1,3 +1,8 @@
+---
+title: "Internals"
+description: "Internal architecture and implementation details"
+---
+
 # Internals
 
 Technical details about how argparse-c works internally.

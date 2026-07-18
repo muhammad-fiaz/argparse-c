@@ -1,3 +1,8 @@
+---
+title: "Options API"
+description: "Create and configure options and positional arguments."
+---
+
 # Options API
 
 Creating and configuring options and positional arguments.

@@ -1,3 +1,8 @@
+---
+title: "Groups API"
+description: "Organize options into logical groups for help output."
+---
+
 # Groups API
 
 Organizing options into logical groups for help output.

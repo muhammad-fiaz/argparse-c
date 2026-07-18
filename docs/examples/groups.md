@@ -1,3 +1,8 @@
+---
+title: "Groups"
+description: "Organizing options into logical groups for help output. int main(int argc, const char **argv) { usage: server [-h] [-H HOST] [-p PORT] [-s] [-c CERT] [-k KEY] HTTP server Network Options: Security Options: Logging Options: options:"
+---
+
 # Groups
 
 Organizing options into logical groups for help output.

@@ -1,3 +1,8 @@
+---
+title: "Plugin System"
+description: "The plugin system allows you to register custom type handlers that extend the built-in type system. Custom types can be used with any parser after registration. static bool parse_ip(const char *value, void *output, int main(int argc, const char **argv) { Built-in types occupy IDs 0-7. Custom types should use IDs starting at `ARGPARSE_TYPE_CUSTOM_BASE` (1000) to avoid conflicts: Register a custom type handler globally. Returns `0` on success, `-1` on failure (registry full or allocation error). Remove a custom type handler. No-op if the type is not registered. typedef bool (*argparse_type_parse_fn)(const char *value, void *output, Returns `true` on success, `false` on error (with message written to `error_buf`)."
+---
+
 # Plugin System
 
 The plugin system allows you to register custom type handlers that extend the built-in type system. Custom types can be used with any parser after registration.

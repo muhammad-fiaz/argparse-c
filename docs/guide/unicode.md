@@ -1,3 +1,8 @@
+---
+title: "Unicode Support"
+description: "UTF-8 and Unicode support for arguments, help text, and values."
+---
+
 # Unicode Support
 
 argparse-c provides full UTF-8 support for argument names, descriptions, help text, and values.

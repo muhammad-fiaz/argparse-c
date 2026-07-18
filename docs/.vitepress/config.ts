@@ -9,7 +9,7 @@ export default defineConfig({
     srcDir: '.',
 
     lastUpdated: true,
-    cleanUrls: true,
+    cleanUrls: false,
 
     head: [
       ['meta', { name: 'author', content: 'Muhammad Fiaz' }],

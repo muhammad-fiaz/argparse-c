@@ -1,3 +1,8 @@
+---
+title: "Options & Types"
+description: "Demonstrates all option types with custom defaults. int main(void) {"
+---
+
 # Options & Types
 
 Demonstrates all option types with custom defaults.

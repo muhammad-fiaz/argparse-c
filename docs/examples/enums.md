@@ -1,3 +1,8 @@
+---
+title: "Enums"
+description: "Demonstrates using `ARGPARSE_TYPE_ENUM` with `argparse_option_set_choices()` to restrict option values to a predefined set. int main(void) {"
+---
+
 # Enums
 
 Demonstrates using `ARGPARSE_TYPE_ENUM` with `argparse_option_set_choices()` to restrict option values to a predefined set.

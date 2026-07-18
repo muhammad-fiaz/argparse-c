@@ -1,3 +1,8 @@
+---
+title: "Environment & Config"
+description: "Demonstrates reading option values from environment variables and config files. MYAPP_OUTPUT_DIR=./out MYAPP_VERBOSE=1 ./env_config MYAPP_COLOR=blue ./env_config int main(void) {"
+---
+
 # Environment & Config
 
 Demonstrates reading option values from environment variables and config files.

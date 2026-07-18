@@ -1,3 +1,8 @@
+---
+title: "Contributing"
+description: "How to contribute to argparse-c"
+---
+
 # Contributing
 
 Thank you for your interest in contributing to argparse-c!

@@ -1,3 +1,8 @@
+---
+title: "Actions API"
+description: "Option actions determine how parsed values are stored or what side effects occur."
+---
+
 # Actions API
 
 Option actions determine how parsed values are stored or what side effects occur.

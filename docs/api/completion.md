@@ -1,3 +1,8 @@
+---
+title: "Completion API"
+description: "Shell completion script generation for Bash, Zsh, Fish, and PowerShell."
+---
+
 # Completion API
 
 Shell completion script generation.

@@ -1,3 +1,8 @@
+---
+title: "Large CLI Apps"
+description: "Real-world project structure for complex command-line applications. myapp/ void register_init(struct argparse *parser); void register_build(struct argparse *parser); void register_deploy(struct argparse *parser); int main(int argc, const char **argv) { static void init_callback(struct argparse *parser, void *data) { void register_init(struct argparse *parser) { static void build_callback(struct argparse *parser, void *data) { void register_build(struct argparse *parser) { cmake_minimum_required(VERSION 3.14) project(mytool VERSION 1.0.0 LANGUAGES C) add_executable(mytool target_include_directories(mytool PRIVATE include) target_link_libraries(mytool PRIVATE argparse-c-static) install(TARGETS mytool DESTINATION bin)"
+---
+
 # Large CLI Apps
 
 Real-world project structure for complex command-line applications.

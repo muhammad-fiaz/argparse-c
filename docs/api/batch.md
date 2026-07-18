@@ -1,3 +1,8 @@
+---
+title: "Batch Registration API Reference"
+description: "Register multiple options at once from an array of definitions. int argparse_add_options_batch(struct argparse *parser, Register multiple options at once. Returns 0 on success, -1 on failure. typedef struct argparse_option_def {"
+---
+
 # Batch Registration API Reference
 
 Register multiple options at once from an array of definitions.

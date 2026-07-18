@@ -1,3 +1,8 @@
+---
+title: "Unicode API Reference"
+description: "UTF-8 string support with proper character width detection. size_t argparse_utf8_strlen(const char *str); Get the display width of a UTF-8 string in terminal columns. Accounts for wide characters (CJK, emoji) and zero-width characters (combining marks). int main(void) {"
+---
+
 # Unicode API Reference
 
 UTF-8 string support with proper character width detection.

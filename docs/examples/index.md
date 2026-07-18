@@ -1,3 +1,8 @@
+---
+title: "Examples"
+description: "Browse example programs demonstrating argparse-c features. cmake -B build -DARGPARSE_BUILD_EXAMPLES=ON cmake --build build --parallel Each example is a complete, runnable program. Copy the code, compile, and run: gcc -o example examples/basic.c -Iinclude -Lbuild -largparse-c"
+---
+
 # Examples
 
 Browse example programs demonstrating argparse-c features.

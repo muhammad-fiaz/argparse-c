@@ -1,3 +1,8 @@
+---
+title: "API Overview"
+description: "Complete reference for the public argparse-c API."
+---
+
 # API Overview
 
 Complete reference for the argparse-c public API.

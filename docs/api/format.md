@@ -1,3 +1,8 @@
+---
+title: "Formatting API"
+description: "Help, usage, and version output formatting APIs."
+---
+
 # Formatting API
 
 Help output and version information formatting.

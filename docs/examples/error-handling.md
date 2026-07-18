@@ -1,3 +1,8 @@
+---
+title: "Error Handling"
+description: "Demonstrates comprehensive error handling with detailed diagnostics. int main(void) {"
+---
+
 # Error Handling
 
 Demonstrates comprehensive error handling with detailed diagnostics.

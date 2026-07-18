@@ -1,3 +1,8 @@
+---
+title: "Validators"
+description: "Custom value validation for options. bool validate_range(const char *value, char *error_buf, size_t error_buf_size) { int main(int argc, const char **argv) { Port: 8080 Error: Value must be between 1 and 10000, got: 99999 bool validate_email(const char *value, char *error_buf, size_t error_buf_size) { struct argparse_option *email_opt = argparse_add_option( argparse_option_set_validator(email_opt, validate_email); bool validate_nonempty(const char *value, char *error_buf, size_t error_buf_size) { bool validate_alphanumeric(const char *value, char *error_buf, size_t error_buf_size) {"
+---
+
 # Validators
 
 Custom value validation for options.

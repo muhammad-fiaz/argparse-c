@@ -1,3 +1,8 @@
+---
+title: "Config Files"
+description: "Loading arguments from JSON, INI, YAML, and TOML config files"
+---
+
 # Config Files
 
 argparse-c supports loading option values from configuration files, providing a convenient way to set defaults without command-line flags.

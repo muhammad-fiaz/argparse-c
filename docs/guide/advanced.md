@@ -1,3 +1,8 @@
+---
+title: "Advanced Usage"
+description: "Advanced features and patterns for power users"
+---
+
 # Advanced Usage
 
 This guide covers advanced features and patterns for power users.

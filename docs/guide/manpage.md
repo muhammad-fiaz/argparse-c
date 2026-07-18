@@ -1,3 +1,8 @@
+---
+title: "Man Page Generation"
+description: "argparse-c can generate Unix manual pages in groff/troff format directly from a parser definition. The output follows standard man page conventions with proper sections. int main(void) { man ./myapp.1 The man page includes these standard sections: Both functions return `0` on success, `-1` on failure."
+---
+
 # Man Page Generation
 
 argparse-c can generate Unix manual pages in groff/troff format directly from a parser definition. The output follows standard man page conventions with proper sections.

@@ -1,3 +1,8 @@
+---
+title: "Memory API"
+description: "Custom allocator support for memory management. typedef struct argparse_allocator { const argparse_allocator *argparse_default_allocator(void); Get the current default allocator. void argparse_set_default_allocator(const argparse_allocator *allocator); Set the default allocator for all subsequent parser operations. void *argparse_alloc(size_t size); Allocate memory using the current default allocator. void argparse_mem_free(void *ptr); Free memory using the current default allocator. static size_t total_allocated = 0; void *tracking_alloc(size_t size, void *user_data) { void tracking_free(void *ptr, void *user_data) { int main(void) {"
+---
+
 # Memory API
 
 Custom allocator support for memory management.
