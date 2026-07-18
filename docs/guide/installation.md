@@ -83,7 +83,7 @@ clean:
 
 ## Method 5: Meson
 
-```meson
+```ini
 # meson.build
 project('myapp', 'c', version: '1.0')
 
