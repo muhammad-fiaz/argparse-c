@@ -56,6 +56,7 @@ void argparse_free(struct argparse *parser)
         argparse_free_internal(opt->default_value, a);
         argparse_free_internal(opt->const_value, a);
         argparse_free_internal(opt->env_var, a);
+        argparse_free_internal(opt->pattern, a);
         for (size_t j = 0; j < opt->choices.count; j++) {
             argparse_free_internal(opt->choices.items[j], a);
         }
@@ -72,6 +73,7 @@ void argparse_free(struct argparse *parser)
         argparse_free_internal(opt->default_value, a);
         argparse_free_internal(opt->const_value, a);
         argparse_free_internal(opt->env_var, a);
+        argparse_free_internal(opt->pattern, a);
         for (size_t j = 0; j < opt->choices.count; j++) {
             argparse_free_internal(opt->choices.items[j], a);
         }
