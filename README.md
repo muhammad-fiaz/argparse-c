@@ -240,6 +240,7 @@ The `examples/` directory contains **14 comprehensive, runnable examples** demon
 | [`arrays`](examples/arrays.c) | nargs=*, APPEND, nargs=? for multi-value | https://muhammad-fiaz.github.io/argparse-c/examples/arrays |
 | [`env_config`](examples/env_config.c) | Environment variable prefix + per-option env | https://muhammad-fiaz.github.io/argparse-c/guide/env-vars |
 | [`advanced`](examples/advanced.c) | Callbacks, store_const, required options | https://muhammad-fiaz.github.io/argparse-c/guide/advanced |
+| [`advanced_features`](examples/advanced_features.c) | All advanced features (thread, json, i18n, batch, plugin) | https://muhammad-fiaz.github.io/argparse-c/guide/advanced |
 | [`error_handling`](examples/error_handling.c) | Error codes and detailed diagnostics | https://muhammad-fiaz.github.io/argparse-c/guide/error-handling |
 | [`large_cli`](examples/large_cli.c) | Realistic build-tool CLI | https://muhammad-fiaz.github.io/argparse-c/examples/large-cli |
 | [`cpp_basic`](examples/cpp_basic.cpp) | C++ wrapper usage | https://muhammad-fiaz.github.io/argparse-c/examples/cpp |
@@ -274,6 +275,30 @@ cmake -B build -DARGPARSE_BUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Debug
 cmake --build build --config Debug
 ctest --test-dir build -C Debug --output-on-failure
 ```
+
+---
+
+## Benchmarks
+
+Run benchmarks on your own machine:
+
+```bash
+cmake -B build -DARGPARSE_BUILD_BENCHMARKS=ON -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
+./build/benchmarks/bench_argparse
+```
+
+### Results (MSVC 19.44, Windows x64, Release, 10,000 iterations)
+
+| Operation | Time | Throughput |
+|-----------|------|------------|
+| Parser creation (5 options + 1 positional) | 2.5 us/parser | ~400K parsers/sec |
+| Parsing (5 options + 1 positional) | 1.9 us/parse | ~530K parses/sec |
+| Parsing (20 options) | 13.8 us/parse | ~72K parses/sec |
+| Subcommand dispatch | 0.5 us/parse | ~1.9M parses/sec |
+| Manual parsing (baseline) | 0.2 us/parse | ~5.2M parses/sec |
+
+argparse-c adds ~1.7 us overhead per parse compared to hand-written `strcmp`/`atoi` loops for a typical 6-argument CLI, which is negligible for interactive use.
 
 ---
 

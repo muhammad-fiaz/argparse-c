@@ -216,6 +216,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             { text: 'Shell Completion', link: '/guide/shell-completion' },
             { text: 'Unicode', link: '/guide/unicode' },
             { text: 'Custom Allocators', link: '/guide/custom-allocators' },
+            { text: 'Colored Output', link: '/guide/color' },
+            { text: 'Thread Safety', link: '/guide/thread' },
+            { text: 'Lazy Defaults', link: '/guide/lazy' },
+            { text: 'Batch Registration', link: '/guide/batch' },
+            { text: 'JSON Export', link: '/guide/json' },
+            { text: 'Man Page Generation', link: '/guide/manpage' },
+            { text: 'i18n / Localization', link: '/guide/i18n' },
+            { text: 'Plugin System', link: '/guide/plugin' },
             { text: 'Performance', link: '/guide/performance' },
             { text: 'Internals', link: '/guide/internals' },
             { text: 'Advanced Usage', link: '/guide/advanced' }
@@ -231,13 +239,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             { text: 'Groups', link: '/api/groups' },
             { text: 'Commands', link: '/api/commands' },
             { text: 'Validators', link: '/api/validators' },
+            { text: 'Extra Validators', link: '/api/validator-extra' },
             { text: 'Actions', link: '/api/actions' },
             { text: 'Formatting', link: '/api/format' },
             { text: 'Memory', link: '/api/memory' },
             { text: 'Errors', link: '/api/errors' },
             { text: 'Config', link: '/api/config' },
             { text: 'Completion', link: '/api/completion' },
-            { text: 'Version', link: '/api/version' }
+            { text: 'Version', link: '/api/version' },
+            { text: 'Color', link: '/api/color' },
+            { text: 'Thread Safety', link: '/api/thread' },
+            { text: 'Lazy Defaults', link: '/api/lazy' },
+            { text: 'Batch Registration', link: '/api/batch' },
+            { text: 'JSON Export', link: '/api/json' },
+            { text: 'Man Pages', link: '/api/manpage' },
+            { text: 'i18n', link: '/api/i18n' },
+            { text: 'Plugin System', link: '/api/plugin' },
+            { text: 'Unicode', link: '/api/unicode' }
           ]
         },
         {
@@ -246,12 +264,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             { text: 'Overview', link: '/examples/' },
             { text: 'Basic Usage', link: '/examples/basic' },
             { text: 'Flags & Switches', link: '/examples/flags' },
+            { text: 'Options & Types', link: '/examples/options' },
             { text: 'Subcommands', link: '/examples/subcommands' },
             { text: 'Validators', link: '/examples/validators' },
             { text: 'Groups', link: '/examples/groups' },
+            { text: 'Enums', link: '/examples/enums' },
             { text: 'Arrays & Lists', link: '/examples/arrays' },
-            { text: 'C++ Integration', link: '/examples/cpp' },
-            { text: 'Large CLI Apps', link: '/examples/large-cli' }
+            { text: 'Error Handling', link: '/examples/error-handling' },
+            { text: 'Env & Config', link: '/examples/env-config' },
+            { text: 'Advanced Features', link: '/examples/advanced' },
+            { text: 'Large CLI Apps', link: '/examples/large-cli' },
+            { text: 'C++ Integration', link: '/examples/cpp' }
           ]
         },
         {

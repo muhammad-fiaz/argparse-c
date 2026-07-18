@@ -13,6 +13,16 @@ set(TEST_SOURCES
     test_suggestions.c
     test_format.c
     test_memory.c
+    test_color.c
+    test_thread.c
+    test_lazy.c
+    test_json.c
+    test_manpage.c
+    test_i18n.c
+    test_batch.c
+    test_plugin.c
+    test_validators_extra.c
+    test_config.c
 )
 
 foreach(test_source ${TEST_SOURCES})

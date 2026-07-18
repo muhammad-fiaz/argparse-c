@@ -49,3 +49,7 @@ Testing/
 conan.lock
 conanfile.txt
 vcpkg_installed/
+
+# Temp / generated files
+bench_output.txt
+bench_error.txt
