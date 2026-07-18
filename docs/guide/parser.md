@@ -62,7 +62,7 @@ argparse_add_positional(parser, ARGPARSE_NARGS_0, ARGPARSE_TYPE_STRING,
 
 ```c
 struct argparse_result *result = argparse_parse(
-    parser, argc, (const char **)argv
+    parser, argc, argv
 );
 ```
 
@@ -72,7 +72,7 @@ The result object contains:
 
 - **Parsed values** - Access via `argparse_get_*()` functions
 - **Error information** - Check with `argparse_result_error_code()`
-- **Exit flag** - Check with `argparse_result_should_exit()`
+- **Exit flag** - Check with `result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN`
 
 ### Error Handling
 
@@ -84,7 +84,7 @@ if (argparse_result_error_code(result) != ARGPARSE_OK) {
     return 1;
 }
 
-if (argparse_result_should_exit(result)) {
+if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
     // --help or --version was invoked
     argparse_result_free(result);
     argparse_free(parser);
@@ -103,7 +103,8 @@ argparse_set_epilog(parser, "Examples:\n  myapp -v input.txt\n  myapp --count 5"
 ### Version String
 
 ```c
-argparse_set_version(parser, "1.0.0");
+/* Note: argparse_set_version() is not available in the API.
+   Use argparse_set_prog() to set the program name, or handle version separately. */
 ```
 
 ### Prefix Character
@@ -111,7 +112,7 @@ argparse_set_version(parser, "1.0.0");
 Change the option prefix from `-` to `/`:
 
 ```c
-argparse_set_prefix(parser, '/');
+argparse_set_prefix_chars(parser, "/");
 ```
 
 ## Example: Complete Parser Setup
@@ -120,7 +121,7 @@ argparse_set_prefix(parser, '/');
 #include <argparse-c/argparse.h>
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     /* Create parser */
     struct argparse *parser = argparse_new(
         "converter",
@@ -128,7 +129,6 @@ int main(int argc, char *argv[]) {
     );
 
     /* Configure parser */
-    argparse_set_version(parser, "2.1.0");
     argparse_set_epilog(parser,
         "Examples:\n"
         "  converter input.csv -o output.json\n"
@@ -151,7 +151,7 @@ int main(int argc, char *argv[]) {
 
     /* Parse */
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     /* Handle results */
@@ -162,7 +162,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return 0;

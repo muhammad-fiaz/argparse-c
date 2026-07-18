@@ -26,10 +26,10 @@ struct argparse_command *commit_cmd = argparse_add_command(
     parser, "commit", "Record changes to the repository"
 );
 
-argparse_command_add_option(commit_cmd, 'm', "message", ARGPARSE_NARGS_1,
-                            ARGPARSE_TYPE_STRING, "Commit message", "MSG");
-argparse_command_add_option(commit_cmd, 'a', "all", ARGPARSE_NARGS_0,
-                            ARGPARSE_TYPE_NONE, "Stage all changes", NULL);
+argparse_add_option(argparse_command_get_parser(commit_cmd), 'm', "message", ARGPARSE_NARGS_1,
+                    ARGPARSE_TYPE_STRING, "Commit message", "MSG");
+argparse_add_option(argparse_command_get_parser(commit_cmd), 'a', "all", ARGPARSE_NARGS_0,
+                    ARGPARSE_TYPE_NONE, "Stage all changes", NULL);
 ```
 
 ## Nested Subcommands
@@ -54,24 +54,24 @@ struct argparse_command *remote_remove = argparse_add_command(
 #include <argparse-c/argparse.h>
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new("git", "Version control system");
 
     /* commit command */
     struct argparse_command *commit = argparse_add_command(
         parser, "commit", "Record changes to the repository"
     );
-    argparse_command_add_option(commit, 'm', "message", ARGPARSE_NARGS_1,
-                                ARGPARSE_TYPE_STRING, "Commit message", "MSG");
-    argparse_command_add_option(commit, 'a', "all", ARGPARSE_NARGS_0,
-                                ARGPARSE_TYPE_NONE, "Stage all changes", NULL);
+    argparse_add_option(argparse_command_get_parser(commit), 'm', "message", ARGPARSE_NARGS_1,
+                        ARGPARSE_TYPE_STRING, "Commit message", "MSG");
+    argparse_add_option(argparse_command_get_parser(commit), 'a', "all", ARGPARSE_NARGS_0,
+                        ARGPARSE_TYPE_NONE, "Stage all changes", NULL);
 
     /* push command */
     struct argparse_command *push = argparse_add_command(
         parser, "push", "Update remote references"
     );
-    argparse_command_add_option(push, 'u', "set-upstream", ARGPARSE_NARGS_0,
-                                ARGPARSE_TYPE_NONE, "Set upstream for branch", NULL);
+    argparse_add_option(argparse_command_get_parser(push), 'u', "set-upstream", ARGPARSE_NARGS_0,
+                        ARGPARSE_TYPE_NONE, "Set upstream for branch", NULL);
 
     /* pull command */
     struct argparse_command *pull = argparse_add_command(
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
     );
 
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return 0;

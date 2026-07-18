@@ -48,7 +48,8 @@ argparse_set_epilog(parser,
 ### Version String
 
 ```c
-argparse_set_version(parser, "1.2.3");
+/* Note: argparse_set_version() is not available in the API.
+   Use argparse_set_prog() to set the program name, or handle version separately. */
 ```
 
 ## Help Formatting Options
@@ -56,21 +57,20 @@ argparse_set_version(parser, "1.2.3");
 ### Custom Format
 
 ```c
-argparse_set_usage_format(parser,
-    "Usage: %prog [OPTIONS] FILE..."
-);
+/* Note: argparse_set_usage_format() is not available in the API.
+   Use argparse_set_usage() to customize the usage line. */
 ```
 
 ### Positional Section Title
 
 ```c
-argparse_set_positional_title(parser, "Files");
+/* Note: argparse_set_positional_title() is not available in the API. */
 ```
 
 ### Options Section Title
 
 ```c
-argparse_set_options_title(parser, "Available Options");
+/* Note: argparse_set_options_title() is not available in the API. */
 ```
 
 ## Example: Formatted CLI
@@ -79,14 +79,13 @@ argparse_set_options_title(parser, "Available Options");
 #include <argparse-c/argparse.h>
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new(
         "convert",
         "File format converter\n"
         "Supports CSV, JSON, XML, and YAML formats"
     );
 
-    argparse_set_version(parser, "2.0.0");
     argparse_set_epilog(parser,
         "Examples:\n"
         "  convert input.csv -o output.json\n"
@@ -105,7 +104,7 @@ int main(int argc, char *argv[]) {
                             "Input file", "INPUT");
 
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
@@ -115,7 +114,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return 0;

@@ -14,8 +14,11 @@ argparse-c supports several built-in types with automatic conversion and validat
 | `ARGPARSE_TYPE_NONE` | `int` | `-v` | Boolean flag (no value) |
 | `ARGPARSE_TYPE_STRING` | `const char *` | `"hello"` | String value |
 | `ARGPARSE_TYPE_INT` | `int` | `42` | Integer value |
+| `ARGPARSE_TYPE_UINT` | `unsigned int` | `42` | Unsigned integer value |
 | `ARGPARSE_TYPE_FLOAT` | `double` | `3.14` | Floating-point value |
+| `ARGPARSE_TYPE_DOUBLE` | `double` | `3.14` | Double-precision float |
 | `ARGPARSE_TYPE_BOOL` | `int` | `true` | Boolean value |
+| `ARGPARSE_TYPE_ENUM` | `int` | `"json"` | Enumeration value |
 
 ## Using Types
 
@@ -74,7 +77,7 @@ argparse_add_option(parser, 'c', "count", ARGPARSE_NARGS_1,
 
 ```c
 // User types: prog --count abc
-// Result: ARGPARSE_ERR_INVALID_VALUE
+// Result: ARGPARSE_ERROR_INVALID_VALUE
 // Error message: "Invalid integer value: 'abc'"
 ```
 
@@ -119,7 +122,7 @@ if (sscanf(date_str, "%d-%d-%d", &year, &month, &day) != 3) {
 #include <argparse-c/argparse.h>
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new("types", "Type demonstration");
 
     argparse_add_option(parser, 's', "string", ARGPARSE_NARGS_1,
@@ -132,7 +135,7 @@ int main(int argc, char *argv[]) {
                         ARGPARSE_TYPE_NONE, "A boolean flag", NULL);
 
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
@@ -142,7 +145,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return 0;

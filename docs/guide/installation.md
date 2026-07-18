@@ -100,7 +100,7 @@ Create a minimal test program:
 #include <stdio.h>
 
 int main(void) {
-    printf("argparse-c version: %s\n", argparse_version());
+    printf("argparse-c version: %s\n", argparse_version_string());
     return 0;
 }
 ```

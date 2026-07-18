@@ -48,7 +48,7 @@ argparse_add_positional(parser, ARGPARSE_NARGS_0, ARGPARSE_TYPE_STRING,
                         "Output file", "OUTPUT");
 
 // Variable (zero or more)
-argparse_add_positional(parser, ARGPARSE_NARGS_NONE, ARGPARSE_TYPE_STRING,
+argparse_add_positional(parser, ARGPARSE_NARGS_STAR, ARGPARSE_TYPE_STRING,
                         "Additional files", "FILES");
 ```
 

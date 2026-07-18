@@ -50,7 +50,7 @@ struct result_deleter {
     void operator()(struct argparse_result *r) const { argparse_result_free(r); }
 };
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     std::unique_ptr<struct argparse, argparse_deleter> parser(
         argparse_new("myapp", "Description")
     );
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
                         ARGPARSE_TYPE_NONE, "Verbose", NULL);
 
     std::unique_ptr<struct argparse_result, result_deleter> result(
-        argparse_parse(parser.get(), argc, (const char **)argv)
+        argparse_parse(parser.get(), argc, argv)
     );
 
     if (argparse_result_error_code(result.get()) != ARGPARSE_OK) {
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 ## Error-Safe Pattern
 
 ```c
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = NULL;
     struct argparse_result *result = NULL;
     int exit_code = 0;
@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
     argparse_add_option(parser, 'v', "verbose", ARGPARSE_NARGS_0,
                         ARGPARSE_TYPE_NONE, "Verbose", NULL);
 
-    result = argparse_parse(parser, argc, (const char **)argv);
+    result = argparse_parse(parser, argc, argv);
     if (!result) {
         fprintf(stderr, "Failed to parse arguments\n");
         exit_code = 1;
@@ -102,8 +102,8 @@ int main(int argc, char *argv[]) {
         goto cleanup;
     }
 
-    if (argparse_result_should_exit(result)) {
-        exit_code = argparse_result_exit_code(result);
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
+        exit_code = argparse_result_error_code(result);
         goto cleanup;
     }
 

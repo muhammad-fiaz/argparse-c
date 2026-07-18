@@ -24,7 +24,7 @@ argparse-c provides a clean, intuitive API for parsing command-line arguments in
 #include <argparse-c/argparse.h>
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new("myapp", "A sample application");
 
     argparse_add_option(parser, 'v', "verbose", ARGPARSE_NARGS_0,
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
     argparse_add_positional(parser, ARGPARSE_NARGS_1, ARGPARSE_TYPE_STRING,
                             "Input file", "input");
 
-    struct argparse_result *result = argparse_parse(parser, argc, (const char **)argv);
+    struct argparse_result *result = argparse_parse(parser, argc, argv);
 
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
         fprintf(stderr, "Error: %s\n", argparse_result_error(result));

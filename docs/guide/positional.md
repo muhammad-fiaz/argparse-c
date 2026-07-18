@@ -41,10 +41,10 @@ argparse_add_positional(parser, ARGPARSE_NARGS_0, ARGPARSE_TYPE_STRING,
 // Usage: prog a b        ✗ (error)
 ```
 
-### ARGPARSE_NARGS_NONE - Zero or More
+### ARGPARSE_NARGS_STAR - Zero or More
 
 ```c
-argparse_add_positional(parser, ARGPARSE_NARGS_NONE, ARGPARSE_TYPE_STRING,
+argparse_add_positional(parser, ARGPARSE_NARGS_STAR, ARGPARSE_TYPE_STRING,
                         "Additional files", "FILES");
 
 // Usage: prog              ✓ (empty list)
@@ -90,7 +90,7 @@ argparse_add_positional(parser, ARGPARSE_NARGS_1, ARGPARSE_TYPE_STRING,
 #include <argparse-c/argparse.h>
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new("processor", "Process files");
 
     argparse_add_option(parser, 'v', "verbose", ARGPARSE_NARGS_0,
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
                             "Destination file (default: stdout)", "DEST");
 
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return 0;

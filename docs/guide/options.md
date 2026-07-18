@@ -36,7 +36,7 @@ argparse_add_option(parser, 'o', "output", ARGPARSE_NARGS_1,
 Options that accept multiple values:
 
 ```c
-argparse_add_option(parser, 'I', "include", ARGPARSE_NARGS_NONE,
+argparse_add_option(parser, 'I', "include", ARGPARSE_NARGS_STAR,
                     ARGPARSE_TYPE_STRING, "Include paths", "PATH");
 
 // Usage: prog -I path1 -I path2 -I path3
@@ -115,8 +115,8 @@ argparse-c automatically adds `--help` / `-h`:
 Add a version flag:
 
 ```c
-argparse_set_version(parser, "1.0.0");
-// Adds --version / -V automatically
+/* Note: argparse_set_version() is not available in the API.
+   Use argparse_set_prog() to set the program name, or handle version separately. */
 ```
 
 ## Advanced Options
@@ -134,8 +134,9 @@ argparse_add_option(parser, 'n', "count", ARGPARSE_NARGS_1,
 
 ```c
 // Make an option required
-argparse_add_option_required(parser, 'f', "format", ARGPARSE_NARGS_1,
+struct argparse_option *opt = argparse_add_option(parser, 'f', "format", ARGPARSE_NARGS_1,
                              ARGPARSE_TYPE_STRING, "Output format", "FMT");
+argparse_option_set_required(opt, true);
 ```
 
 ## Example: Complex Options
@@ -143,7 +144,7 @@ argparse_add_option_required(parser, 'f', "format", ARGPARSE_NARGS_1,
 ```c
 #include <argparse-c/argparse.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new("build", "Build system");
 
     argparse_add_option(parser, 'j', "jobs", ARGPARSE_NARGS_1,
@@ -152,13 +153,13 @@ int main(int argc, char *argv[]) {
                         ARGPARSE_TYPE_STRING, "Output directory", "DIR");
     argparse_add_option(parser, 'v', "verbose", ARGPARSE_NARGS_0,
                         ARGPARSE_TYPE_NONE, "Verbose output", NULL);
-    argparse_add_option(parser, 'D', "define", ARGPARSE_NARGS_NONE,
+    argparse_add_option(parser, 'D', "define", ARGPARSE_NARGS_STAR,
                         ARGPARSE_TYPE_STRING, "Preprocessor defines", "KEY=VAL");
-    argparse_add_option(parser, 'I', "include", ARGPARSE_NARGS_NONE,
+    argparse_add_option(parser, 'I', "include", ARGPARSE_NARGS_STAR,
                         ARGPARSE_TYPE_STRING, "Include directories", "DIR");
 
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
@@ -168,7 +169,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return 0;

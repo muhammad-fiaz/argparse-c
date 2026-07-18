@@ -10,7 +10,7 @@ Groups organize related arguments together for better help formatting and logica
 ## Creating Groups
 
 ```c
-struct argparse_group *group = argparse_group_new(
+struct argparse_group *group = argparse_add_group(
     parser,
     "Network Options",
     "Options for network configuration"
@@ -20,7 +20,7 @@ struct argparse_group *group = argparse_group_new(
 ## Adding Arguments to Groups
 
 ```c
-struct argparse_group *net_group = argparse_group_new(
+struct argparse_group *net_group = argparse_add_group(
     parser,
     "Network Options",
     "Configure network settings"
@@ -59,11 +59,11 @@ General Options:
 #include <argparse-c/argparse.h>
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new("dbtool", "Database management tool");
 
     /* Connection group */
-    struct argparse_group *conn = argparse_group_new(
+    struct argparse_group *conn = argparse_add_group(
         parser, "Connection", "Database connection options"
     );
     argparse_group_add_option(conn, 'H', "host", ARGPARSE_NARGS_1,
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
                               ARGPARSE_TYPE_STRING, "Database name", "DB");
 
     /* Output group */
-    struct argparse_group *out = argparse_group_new(
+    struct argparse_group *out = argparse_add_group(
         parser, "Output", "Output formatting options"
     );
     argparse_group_add_option(out, 'f', "format", ARGPARSE_NARGS_1,
@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
                               ARGPARSE_TYPE_STRING, "Output file", "FILE");
 
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return 0;

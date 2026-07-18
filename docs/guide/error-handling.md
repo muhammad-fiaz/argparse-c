@@ -12,18 +12,20 @@ argparse-c provides comprehensive error handling for argument parsing.
 | Error Code | Description |
 |------------|-------------|
 | `ARGPARSE_OK` | Parsing succeeded |
-| `ARGPARSE_ERR_UNKNOWN_OPTION` | Unknown option encountered |
-| `ARGPARSE_ERR_MISSING_VALUE` | Required value not provided |
-| `ARGPARSE_ERR_INVALID_VALUE` | Value conversion failed |
-| `ARGPARSE_ERR_TOO_MANY_ARGS` | Too many arguments |
-| `ARGPARSE_ERR_TOO_FEW_ARGS` | Too few arguments |
-| `ARGPARSE_ERR_AMBIGUOUS` | Ambiguous option |
+| `ARGPARSE_ERROR_UNKNOWN` | Unknown error |
+| `ARGPARSE_ERROR_MISSING_ARGUMENT` | Required argument not provided |
+| `ARGPARSE_ERROR_INVALID_VALUE` | Value conversion failed |
+| `ARGPARSE_ERROR_TOO_MANY_ARGUMENTS` | Too many arguments |
+| `ARGPARSE_ERROR_AMBIGUOUS_OPTION` | Ambiguous option |
+| `ARGPARSE_ERROR_CONFLICT` | Conflicting options |
+| `ARGPARSE_ERROR_OUT_OF_MEMORY` | Out of memory |
+| `ARGPARSE_ERROR_INVALID_CONFIG` | Invalid configuration |
 
 ## Basic Error Handling
 
 ```c
 struct argparse_result *result = argparse_parse(
-    parser, argc, (const char **)argv
+    parser, argc, argv
 );
 
 if (argparse_result_error_code(result) != ARGPARSE_OK) {
@@ -52,8 +54,7 @@ Error: expected 1 argument, got 2
 ```c
 if (argparse_result_error_code(result) != ARGPARSE_OK) {
     fprintf(stderr, "Error: %s\n", argparse_result_error(result));
-    fprintf(stderr, "Run '%s --help' for usage information\n",
-            argparse_get_program_name(parser));
+    fprintf(stderr, "Run '--help' for usage information\n");
 }
 ```
 
@@ -62,7 +63,7 @@ if (argparse_result_error_code(result) != ARGPARSE_OK) {
 ### Help and Version
 
 ```c
-if (argparse_result_should_exit(result)) {
+if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
     /* --help or --version was invoked */
     argparse_result_free(result);
     argparse_free(parser);
@@ -73,8 +74,8 @@ if (argparse_result_should_exit(result)) {
 ### Programmatic Exit
 
 ```c
-if (argparse_result_should_exit(result)) {
-    int exit_code = argparse_result_exit_code(result);
+if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
+    int exit_code = argparse_result_error_code(result);
     argparse_result_free(result);
     argparse_free(parser);
     return exit_code;
@@ -88,7 +89,7 @@ if (argparse_result_should_exit(result)) {
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new("server", "HTTP server");
 
     argparse_add_option(parser, 'p', "port", ARGPARSE_NARGS_1,
@@ -97,22 +98,21 @@ int main(int argc, char *argv[]) {
                         ARGPARSE_TYPE_STRING, "Host address", "HOST");
 
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     /* Handle parse errors */
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
         fprintf(stderr, "Error: %s\n", argparse_result_error(result));
-        fprintf(stderr, "Try '%s --help' for more information\n",
-                argparse_get_program_name(parser));
+        fprintf(stderr, "Try '--help' for more information\n");
         argparse_result_free(result);
         argparse_free(parser);
         return EXIT_FAILURE;
     }
 
     /* Handle --help/--version */
-    if (argparse_result_should_exit(result)) {
-        int code = argparse_result_exit_code(result);
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
+        int code = argparse_result_error_code(result);
         argparse_result_free(result);
         argparse_free(parser);
         return code;

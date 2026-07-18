@@ -74,7 +74,7 @@ static const char *get_env_or_default(const char *env_name, const char *def) {
     return val ? val : def;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new("mytool", "A configurable tool");
 
     argparse_add_option(parser, 'p', "port", ARGPARSE_NARGS_1,
@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
                         ARGPARSE_TYPE_NONE, "Verbose output", NULL);
 
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return 0;

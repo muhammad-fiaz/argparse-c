@@ -27,7 +27,7 @@ Create `main.c`:
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     /* Create a parser */
     struct argparse *parser = argparse_new(
         "greeter",
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 
     /* Parse arguments */
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     /* Handle errors */
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
     }
 
     /* Handle --help and --version automatically */
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return EXIT_SUCCESS;

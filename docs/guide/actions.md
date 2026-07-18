@@ -57,7 +57,7 @@ argparse_add_option(parser, 'v', "verbose", ARGPARSE_NARGS_0,
 Collect multiple values into a list:
 
 ```c
-argparse_add_option(parser, 'I', "include", ARGPARSE_NARGS_NONE,
+argparse_add_option(parser, 'I', "include", ARGPARSE_NARGS_STAR,
                     ARGPARSE_TYPE_STRING, "Include paths", "PATH");
 
 // Usage: prog -I path1 -I path2 -I path3
@@ -80,7 +80,7 @@ argparse_add_option(parser, 'd', "debug", ARGPARSE_NARGS_0,
 #include <argparse-c/argparse.h>
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, const char **argv) {
     struct argparse *parser = argparse_new("app", "Application with verbosity");
 
     /* -v can be used multiple times */
@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
                         ARGPARSE_TYPE_NONE, "Quiet mode", NULL);
 
     struct argparse_result *result = argparse_parse(
-        parser, argc, (const char **)argv
+        parser, argc, argv
     );
 
     if (argparse_result_error_code(result) != ARGPARSE_OK) {
@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argparse_result_should_exit(result)) {
+    if (result == NULL || argparse_result_error_code(result) != ARGPARSE_ERROR_UNKNOWN) {
         argparse_result_free(result);
         argparse_free(parser);
         return 0;
