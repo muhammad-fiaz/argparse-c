@@ -238,6 +238,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             { text: 'Namespace / Result', link: '/api/namespace' },
             { text: 'Groups', link: '/api/groups' },
             { text: 'Commands', link: '/api/commands' },
+            { text: 'Mutex Groups', link: '/api/mutex' },
             { text: 'Validators', link: '/api/validators' },
             { text: 'Extra Validators', link: '/api/validator-extra' },
             { text: 'Actions', link: '/api/actions' },
@@ -280,7 +281,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {
           text: 'Resources',
           items: [
-            { text: 'FAQ', link: '/guide/faq' }
+            { text: 'FAQ', link: '/guide/faq' },
+            { text: 'Contributing', link: '/guide/contributing' }
           ]
         }
       ],

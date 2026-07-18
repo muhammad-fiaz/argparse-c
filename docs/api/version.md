@@ -5,10 +5,10 @@ Version information for the argparse-c library.
 ## Compile-Time Macros
 
 ```c
-#define ARGPARSE_VERSION_MAJOR 1    /* Major version */
-#define ARGPARSE_VERSION_MINOR 0    /* Minor version */
+#define ARGPARSE_VERSION_MAJOR 0    /* Major version */
+#define ARGPARSE_VERSION_MINOR 1    /* Minor version */
 #define ARGPARSE_VERSION_PATCH 0    /* Patch version */
-#define ARGPARSE_VERSION_STRING "1.0.0"  /* Full version string */
+#define ARGPARSE_VERSION_STRING "0.1.0"  /* Full version string */
 
 /* Compute version number: major * 10000 + minor * 100 + patch */
 #define ARGPARSE_VERSION_NUM(major, minor, patch) \
@@ -25,7 +25,7 @@ const char *argparse_version_string(void);
 
 Get the library version as a string.
 
-**Returns:** Static string (e.g., "1.0.0"). Must not be freed.
+**Returns:** Static string (e.g., "0.1.0"). Must not be freed.
 
 ### `argparse_version`
 
@@ -63,7 +63,7 @@ int main(void) {
         ARGPARSE_VERSION_MINOR,
         ARGPARSE_VERSION_PATCH);
 
-    int required = ARGPARSE_VERSION_NUM(1, 0, 0);
+    int required = ARGPARSE_VERSION_NUM(0, 1, 0);
     if (current >= required) {
         printf("Version is compatible\n");
     }
@@ -83,7 +83,7 @@ argparse-c follows [Semantic Versioning](https://semver.org/):
 Check compatibility at compile time:
 
 ```c
-#if ARGPARSE_VERSION_NUM(ARGPARSE_VERSION_MAJOR, ARGPARSE_VERSION_MINOR, 0) < 10000
-#error "Requires argparse-c 1.0.0 or later"
+#if ARGPARSE_VERSION_NUM(ARGPARSE_VERSION_MAJOR, ARGPARSE_VERSION_MINOR, 0) < 100
+#error "Requires argparse-c 0.1.0 or later"
 #endif
 ```

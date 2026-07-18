@@ -147,6 +147,52 @@ static void test_mutex_conflict_error(void) {
     argparse_free(p);
 }
 
+static void test_unknown_option_error(void) {
+    struct argparse *p = argparse_new("prog", NULL);
+    argparse_add_option(p, 'v', "verbose", ARGPARSE_NARGS_0,
+        ARGPARSE_TYPE_NONE, "Verbose", "verbose");
+    const char *argv[] = {"prog", "--unknown"};
+    struct argparse_result *r = argparse_parse(p, 2, argv);
+    ASSERT_EQ(argparse_result_error_code(r), ARGPARSE_ERROR_UNKNOWN);
+    argparse_result_free(r);
+    argparse_free(p);
+}
+
+static void test_ambiguous_option_error(void) {
+    struct argparse *p = argparse_new("prog", NULL);
+    argparse_add_option(p, 0, "verbose", ARGPARSE_NARGS_0,
+        ARGPARSE_TYPE_NONE, "Verbose", "verbose");
+    argparse_add_option(p, 0, "version", ARGPARSE_NARGS_0,
+        ARGPARSE_TYPE_NONE, "Version", "version");
+    const char *argv[] = {"prog", "--ver"};
+    struct argparse_result *r = argparse_parse(p, 2, argv);
+    ASSERT_EQ(argparse_result_error_code(r), ARGPARSE_ERROR_AMBIGUOUS_OPTION);
+    argparse_result_free(r);
+    argparse_free(p);
+}
+
+static void test_unexpected_positional_error(void) {
+    struct argparse *p = argparse_new("prog", NULL);
+    argparse_add_option(p, 'v', "verbose", ARGPARSE_NARGS_0,
+        ARGPARSE_TYPE_NONE, "Verbose", NULL);
+    const char *argv[] = {"prog", "unexpected"};
+    struct argparse_result *r = argparse_parse(p, 2, argv);
+    ASSERT_NE(argparse_result_error_code(r), ARGPARSE_OK);
+    argparse_result_free(r);
+    argparse_free(p);
+}
+
+static void test_missing_option_value_error(void) {
+    struct argparse *p = argparse_new("prog", NULL);
+    argparse_add_option(p, 'n', "name", ARGPARSE_NARGS_1,
+        ARGPARSE_TYPE_STRING, "Name", "name");
+    const char *argv[] = {"prog", "-n"};
+    struct argparse_result *r = argparse_parse(p, 2, argv);
+    ASSERT_EQ(argparse_result_error_code(r), ARGPARSE_ERROR_MISSING_ARGUMENT);
+    argparse_result_free(r);
+    argparse_free(p);
+}
+
 int main(int argc, char **argv) {
     (void)argc; (void)argv;
     printf("\n=== test_errors ===\n");
@@ -164,6 +210,10 @@ int main(int argc, char **argv) {
     RUN_TEST(test_error_code_various);
     RUN_TEST(test_error_string_all_codes);
     RUN_TEST(test_mutex_conflict_error);
+    RUN_TEST(test_unknown_option_error);
+    RUN_TEST(test_ambiguous_option_error);
+    RUN_TEST(test_unexpected_positional_error);
+    RUN_TEST(test_missing_option_value_error);
 
     printf("\nResults: %d/%d passed", _tests_passed, _tests_run);
     if (_tests_failed > 0) printf(", %d FAILED", _tests_failed);

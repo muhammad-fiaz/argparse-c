@@ -70,8 +70,10 @@ argparse_free(parser);
 | [Options](options.md) | `argparse_argument.h` | Option creation and configuration |
 | [Namespace](namespace.md) | `argparse_namespace.h` | Parsing and value access |
 | [Groups](groups.md) | `argparse_group.h` | Argument grouping |
+| [Mutex](mutex.md) | `argparse_mutex.h` | Mutually exclusive option groups |
 | [Commands](commands.md) | `argparse_command.h` | Subcommands |
 | [Validators](validators.md) | `argparse_validator.h` | Custom validation |
+| [Validators Extra](validator-extra.md) | `argparse_validator_extra.h` | Built-in range/pattern validators |
 | [Actions](actions.md) | `argparse_types.h` | Option actions |
 | [Formatting](format.md) | `argparse_format.h` | Help output |
 | [Memory](memory.md) | `argparse_memory.h` | Custom allocators |
@@ -79,3 +81,12 @@ argparse_free(parser);
 | [Config](config.md) | `argparse_config.h` | Config files and env vars |
 | [Completion](completion.md) | `argparse_complete.h` | Shell completion |
 | [Version](version.md) | `argparse_version.h` | Version information |
+| [Color](color.md) | `argparse_color.h` | Colored terminal output |
+| [Thread](thread.md) | `argparse_thread.h` | Thread-safe parsing |
+| [Batch](batch.md) | `argparse_batch.h` | Batch option registration |
+| [Unicode](unicode.md) | `argparse_unicode.h` | UTF-8 string support |
+| [Lazy Defaults](lazy.md) | `argparse_lazy.h` | On-demand default values |
+| [I18n](i18n.md) | `argparse_i18n.h` | Internationalization |
+| [Manpage](manpage.md) | `argparse_manpage.h` | Man page generation |
+| [JSON](json.md) | `argparse_json.h` | JSON export |
+| [Plugin](plugin.md) | `argparse_plugin.h` | Custom type plugins |

@@ -61,12 +61,47 @@ static void test_validate_nonempty(void) {
     ASSERT_FALSE(argparse_validate_nonempty("", err, sizeof(err)));
 }
 
+static int custom_validator_called = 0;
+
+static bool my_custom_validator(const char *value, char *error_buf, size_t error_buf_size) {
+    custom_validator_called = 1;
+    if (strlen(value) == 0) {
+        snprintf(error_buf, error_buf_size, "value must not be empty");
+        return false;
+    }
+    return true;
+}
+
+static void test_option_set_validator_direct(void) {
+    struct argparse *parser = argparse_new("test", "test");
+    struct argparse_option *opt = argparse_add_option(
+        parser, 'n', "name", ARGPARSE_NARGS_1,
+        ARGPARSE_TYPE_STRING, "Name", "name");
+    argparse_option_set_validator(opt, my_custom_validator);
+
+    const char *argv[] = {"test", "-n", "hello"};
+    custom_validator_called = 0;
+    struct argparse_result *result = argparse_parse(parser, 3, argv);
+    ASSERT_EQ(argparse_result_error_code(result), ARGPARSE_OK);
+    ASSERT_EQ(custom_validator_called, 1);
+    argparse_result_free(result);
+
+    const char *argv2[] = {"test", "-n", ""};
+    custom_validator_called = 0;
+    struct argparse_result *result2 = argparse_parse(parser, 3, argv2);
+    ASSERT_NE(argparse_result_error_code(result2), ARGPARSE_OK);
+    ASSERT_EQ(custom_validator_called, 1);
+    argparse_result_free(result2);
+    argparse_free(parser);
+}
+
 int main(void) {
     printf("=== test_validators_extra ===\n");
     RUN_TEST(test_option_set_range_int);
     RUN_TEST(test_option_set_range_float);
     RUN_TEST(test_option_set_pattern);
     RUN_TEST(test_validate_nonempty);
+    RUN_TEST(test_option_set_validator_direct);
     printf("Results: %d/%d passed\n", _tests_passed, _tests_run);
     return _tests_failed > 0 ? 1 : 0;
 }

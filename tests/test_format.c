@@ -89,6 +89,12 @@ static void test_help_minimal(void) {
     argparse_free(p);
 }
 
+static void test_version_does_not_crash(void) {
+    struct argparse *p = argparse_new("myprog", "Test program");
+    argparse_print_version(p);
+    argparse_free(p);
+}
+
 int main(int argc, char **argv) {
     (void)argc; (void)argv;
     printf("\n=== test_format ===\n");
@@ -104,6 +110,7 @@ int main(int argc, char **argv) {
     RUN_TEST(test_help_with_choices);
     RUN_TEST(test_usage_with_custom_usage);
     RUN_TEST(test_help_minimal);
+    RUN_TEST(test_version_does_not_crash);
 
     printf("\nResults: %d/%d passed", _tests_passed, _tests_run);
     if (_tests_failed > 0) printf(", %d FAILED", _tests_failed);

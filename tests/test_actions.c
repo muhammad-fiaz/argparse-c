@@ -161,6 +161,58 @@ static void test_help_action(void) {
     argparse_free(p);
 }
 
+static void test_version_action(void) {
+    struct argparse *p = argparse_new("prog", "Test program");
+    struct argparse_option *opt = argparse_add_option(p, 0, "version",
+        ARGPARSE_NARGS_0, ARGPARSE_TYPE_NONE, "Show version", NULL);
+    argparse_option_set_action(opt, ARGPARSE_VERSION);
+    const char *argv[] = {"prog", "--version"};
+    struct argparse_result *r = argparse_parse(p, 2, argv);
+    ASSERT_NOT_NULL(r);
+    argparse_result_free(r);
+    argparse_free(p);
+}
+
+static void test_extend_single(void) {
+    struct argparse *p = argparse_new("prog", NULL);
+    struct argparse_option *opt = argparse_add_option(p, 'o', "output",
+        ARGPARSE_NARGS_1, ARGPARSE_TYPE_STRING, "Output", "output");
+    argparse_option_set_action(opt, ARGPARSE_EXTEND);
+    const char *argv[] = {"prog", "-o", "file.txt"};
+    struct argparse_result *r = argparse_parse(p, 3, argv);
+    ASSERT_EQ(argparse_result_error_code(r), ARGPARSE_OK);
+    ASSERT_EQ(argparse_get_count(r, "output"), (size_t)1);
+    ASSERT_STR_EQ(argparse_get_string_at(r, "output", 0), "file.txt");
+    argparse_result_free(r);
+    argparse_free(p);
+}
+
+static void test_extend_multiple(void) {
+    struct argparse *p = argparse_new("prog", NULL);
+    struct argparse_option *opt = argparse_add_option(p, 'o', "output",
+        ARGPARSE_NARGS_1, ARGPARSE_TYPE_STRING, "Output", "output");
+    argparse_option_set_action(opt, ARGPARSE_EXTEND);
+    const char *argv[] = {"prog", "-o", "a", "-o", "b", "-o", "c"};
+    struct argparse_result *r = argparse_parse(p, 7, argv);
+    ASSERT_EQ(argparse_result_error_code(r), ARGPARSE_OK);
+    ASSERT_EQ(argparse_get_count(r, "output"), (size_t)3);
+    argparse_result_free(r);
+    argparse_free(p);
+}
+
+static void test_store_false_not_present(void) {
+    struct argparse *p = argparse_new("prog", NULL);
+    struct argparse_option *opt = argparse_add_option(p, 'q', "quiet",
+        ARGPARSE_NARGS_0, ARGPARSE_TYPE_NONE, "Quiet", "quiet");
+    argparse_option_set_action(opt, ARGPARSE_STORE_FALSE);
+    const char *argv[] = {"prog"};
+    struct argparse_result *r = argparse_parse(p, 1, argv);
+    ASSERT_EQ(argparse_result_error_code(r), ARGPARSE_OK);
+    ASSERT_FALSE(argparse_get_bool(r, "quiet"));
+    argparse_result_free(r);
+    argparse_free(p);
+}
+
 int main(int argc, char **argv) {
     (void)argc; (void)argv;
     printf("\n=== test_actions ===\n");
@@ -178,6 +230,10 @@ int main(int argc, char **argv) {
     RUN_TEST(test_append_single);
     RUN_TEST(test_append_multiple);
     RUN_TEST(test_help_action);
+    RUN_TEST(test_version_action);
+    RUN_TEST(test_extend_single);
+    RUN_TEST(test_extend_multiple);
+    RUN_TEST(test_store_false_not_present);
 
     printf("\nResults: %d/%d passed", _tests_passed, _tests_run);
     if (_tests_failed > 0) printf(", %d FAILED", _tests_failed);
