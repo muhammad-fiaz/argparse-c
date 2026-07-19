@@ -309,10 +309,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         provider: 'local'
       },
 
-      carbonAds: {
-        code: 'ca-pub-2040560600290490',
-        placement: 'argparse-c'
-      }
+  
     },
 
     sitemap: {
